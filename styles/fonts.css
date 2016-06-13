@@ -1,0 +1,379 @@
+/*Simple Gotham*/
+@font-face{
+	font-family: 'Gotham-Black';
+	src:url('../fonts/Gotham/Gotham-Black.otf'),
+	url('../fonts/Gotham/Gotham-Black.ttf');
+}
+@font-face{
+	font-family: 'Gotham-BlackItalic';
+	src:url('../fonts/Gotham/Gotham-BlackItalic.otf'),
+	url('../fonts/Gotham/Gotham-BlackItalic.ttf');
+}
+@font-face{
+	font-family: 'Gotham-Bold';
+	src:url('../fonts/Gotham/Gotham-Bold.otf'),
+	url('../fonts/Gotham/Gotham-Bold.ttf');
+}
+@font-face{
+	font-family: 'Gotham-BoldItalic';
+	src:url('../fonts/Gotham/Gotham-BoldItalic.otf'),
+	url('../fonts/Gotham/Gotham-BoldItalic.ttf');
+}
+@font-face{
+	font-family: 'Gotham-Book';
+	src:url('../fonts/Gotham/Gotham-Book.otf'),
+	url('../fonts/Gotham/Gotham-Book.ttf');
+}
+@font-face{
+	font-family: 'Gotham-BookItalic';
+	src:url('../fonts/Gotham/Gotham-BookItalic.otf'),
+	url('../fonts/Gotham/Gotham-BookItalic.ttf');
+}
+@font-face{
+	font-family: 'Gotham-Light';
+	src:url('../fonts/Gotham/Gotham-Light.otf'),
+	url('../fonts/Gotham/Gotham-Light.ttf');
+}
+@font-face{
+	font-family: 'Gotham-LightItalic';
+	src:url('../fonts/Gotham/Gotham-LightItalic.otf'),
+	url('../fonts/Gotham/Gotham-LightItalic.ttf');
+}
+@font-face{
+	font-family: 'Gotham-Medium';
+	src:url('../fonts/Gotham/Gotham-Medium.otf'),
+	url('../fonts/Gotham/Gotham-Medium.ttf');
+}
+@font-face{
+	font-family: 'Gotham-MediumItalic';
+	src:url('../fonts/Gotham/Gotham-MediumItalic.otf'),
+	url('../fonts/Gotham/Gotham-MediumItalic.ttf');
+}
+@font-face{
+	font-family: 'Gotham-Thin';
+	src:url('../fonts/Gotham/Gotham-Thin.otf'),
+	url('../fonts/Gotham/Gotham-Thin.ttf');
+}
+@font-face{
+	font-family: 'Gotham-ThinItalic';
+	src:url('../fonts/Gotham/Gotham-ThinItalic.otf'),
+	url('../fonts/Gotham/Gotham-ThinItalic.ttf');
+}
+@font-face{
+	font-family: 'Gotham-Ultra';
+	src:url('../fonts/Gotham/Gotham-Ultra.otf'),
+	url('../fonts/Gotham/Gotham-Ultra.ttf');
+}
+@font-face{
+	font-family: 'Gotham-UltraItalic';
+	src:url('../fonts/Gotham/Gotham-UltraItalic.otf'),
+	url('../fonts/Gotham/Gotham-UltraItalic.ttf');
+}
+@font-face{
+	font-family: 'Gotham-XLight';
+	src:url('../fonts/Gotham/Gotham-XLight.otf'),
+	url('../fonts/Gotham/Gotham-XLight.ttf');
+}
+@font-face{
+	font-family: 'Gotham-XLightItalic';
+	src:url('../fonts/Gotham/Gotham-XLightItalic.otf'),
+	url('../fonts/Gotham/Gotham-XLightItalic.ttf');
+}
+
+/*Simple Gotham Ends here */
+
+
+
+/* GothamCond */
+
+@font-face{
+	font-family: 'GothamCond-Black';
+	src:url('../fonts/GothamCond-Black.otf');
+}
+@font-face{
+	font-family: 'GothamCond-BlackItalic';
+	src:url('../fonts/GothamCond-BlackItalic.otf');
+}
+
+@font-face{
+	font-family: 'GothamCond-Bold';
+	src:url('../fonts/GothamCond-Bold.otf');
+}
+
+@font-face{
+	font-family: 'GothamCond-BoldItalic';
+	src:url('../fonts/GothamCond-BoldItalic.otf');
+}
+
+@font-face{
+	font-family: 'GothamCond-Book';
+	src:url('../fonts/GothamCond-Book.otf');
+}
+@font-face{
+	font-family: 'GothamCond-BookItalic';
+	src:url('../fonts/GothamCond-BookItalic.otf');
+}
+@font-face{
+	font-family: 'GothamCond-Light';
+	src:url('../fonts/GothamCond-Light.otf');
+}
+@font-face{
+	font-family: 'GothamCond-LightItalic';
+	src:url('../fonts/GothamCond-LightItalic.otf');
+}
+@font-face{
+	font-family: 'GothamCond-Medium';
+	src:url('../fonts/GothamCond-Medium.otf');
+}
+@font-face{
+	font-family: 'GothamCond-MediumItalic';
+	src:url('../fonts/GothamCond-MediumItalic.otf');
+}
+@font-face{
+	font-family: 'GothamCond-Thin';
+	src:url('../fonts/GothamCond-Thin.otf');
+}
+@font-face{
+	font-family: 'GothamCond-ThinItalic';
+	src:url('../fonts/GothamCond-ThinItalic.otf');
+}
+
+@font-face{
+	font-family: 'GothamCond-Ultra';
+	src:url('../fonts/GothamCond-Ultra.otf');
+}
+
+@font-face{
+	font-family: 'GothamCond-UltraItalic';
+	src:url('../fonts/GothamCond-UltraItalic.otf');
+}
+
+@font-face{
+	font-family: 'GothamCond-XBlack';
+	src:url('../fonts/GothamCond-XBlack.otf');
+}
+@font-face{
+	font-family: 'GothamCond-XBlackItalic';
+	src:url('../fonts/GothamCond-XBlackItalic.otf');
+}
+@font-face{
+	font-family: 'GothamCond-XLight';
+	src:url('../fonts/GothamCond-XLight.otf');
+}
+@font-face{
+	font-family: 'GothamCond-XLightItalic';
+	src:url('../fonts/GothamCond-XLightItalic.otf');
+}
+
+/* Gotham Narrow */
+
+@font-face{
+	font-family: 'GothamNarrow-Black';
+	src:url('../fonts/GothamNarrow-Black.otf'),
+	url('../fonts/GothamNarrow-Black.ttf');
+}
+
+@font-face{
+	font-family: 'GothamNarrow-BlackItalic';
+	src:url('../fonts/GothamNarrow-BlackItalic.otf'),
+	url('../fonts/GothamNarrow-BlackItalic.ttf');
+
+}
+
+@font-face{
+	font-family: 'GothamNarrow-Bold';
+	src:url('../fonts/GothamNarrow-Bold.otf'),
+	url('../fonts/GothamNarrow-Bold.ttf');
+}
+
+@font-face{
+	font-family: 'GothamNarrow-BoldItalic';
+	src:url('../fonts/GothamNarrow-BoldItalic.otf'),
+	url('../fonts/GothamNarrow-BoldItalic.ttf');
+}
+
+@font-face{
+	font-family: 'GothamNarrow-Book';
+	src:url('../fonts/GothamNarrow-Book.otf'),
+	url('../fonts/GothamNarrow-Book.ttf');
+}
+
+@font-face{
+	font-family: 'GothamNarrow-BookItalic';
+	src:url('../fonts/'GothamNarrow-BookItalic.otf),
+	url('../fonts/'GothamNarrow-BookItalic.ttf);
+}
+
+@font-face{
+	font-family: 'GothamNarrow-Light';
+	src:url('../fonts/GothamNarrow-Light.otf'),
+	url('../fonts/GothamNarrow-Light.ttf');
+}
+
+@font-face{
+	font-family: 'GothamNarrow-LightItalic';
+	src:url('../fonts/GothamNarrow-LightItalic.otf'),
+	url('../fonts/GothamNarrow-LightItalic.ttf');
+}
+
+@font-face{
+	font-family: 'GothamNarrow-Medium';
+	src:url('../fonts/GothamNarrow-Medium.otf'),
+	url('../fonts/GothamNarrow-Medium.ttf');
+}
+
+@font-face{
+	font-family: 'GothamNarrow-MediumItalic';
+	src:url('../fonts/GothamNarrow-MediumItalic.otf'),
+	url('../fonts/GothamNarrow-MediumItalic.ttf');
+}
+
+@font-face{
+	font-family: 'GothamNarrow-Thin';
+	src:url('../fonts/GothamNarrow-Thin.otf'),
+	url('../fonts/GothamNarrow-Thin.ttf');
+}
+
+@font-face{
+	font-family: 'GothamNarrow-ThinItalic';
+	src:url('../fonts/GothamNarrow-ThinItalic.otf'),
+	url('../fonts/GothamNarrow-ThinItalic.ttf');
+}
+
+@font-face{
+	font-family: 'GothamNarrow-Ultra';
+	src:url('../fonts/GothamNarrow-Ultra.otf'),
+	url('../fonts/GothamNarrow-Ultra.ttf');
+}
+
+@font-face{
+	font-family: 'GothamNarrow-UltraItalic';
+	src:url('../fonts/GothamNarrow-UltraItalic.otf'),
+	url('../fonts/GothamNarrow-UltraItalic.ttf');
+}
+
+@font-face{
+	font-family: 'GothamNarrow-XLight';
+	src:url('../fonts/GothamNarrow-XLight.otf'),
+	url('../fonts/GothamNarrow-XLight.ttf');
+}
+
+@font-face{
+	font-family: 'GothamNarrow-XLightItalic';
+	src:url('../fonts/GothamNarrow-XLightItalic.otf'),
+	url('../fonts/GothamNarrow-XLightItalic.ttf');
+}
+
+/*Gotham Rnd */
+
+@font-face{
+	font-family: 'GothamRnd-Bold';
+	src:url('../fonts/GothamRnd-Bold.otf');
+}
+@font-face{
+	font-family: 'GothamRnd-BoldIta';
+	src:url('../fonts/GothamRnd-BoldIta.otf');
+}
+@font-face{
+	font-family: 'GothamRnd-Book';
+	src:url('../fonts/GothamRnd-Book.otf');
+}
+@font-face{
+	font-family: 'GothamRnd-BookIta';
+	src:url('../fonts/GothamRnd-BookIta.otf');
+}
+@font-face{
+	font-family: 'GothamRnd-Light';
+	src:url('../fonts/GothamRnd-Light.otf');
+}
+@font-face{
+	font-family: 'GothamRnd-LightIta';
+	src:url('../fonts/GothamRnd-LightIta.otf');
+}
+@font-face{
+	font-family: 'GothamRnd-MedIta';
+	src:url('../fonts/GothamRnd-MedIta.otf');
+}
+@font-face{
+	font-family: 'GothamRnd-Medium';
+	src:url('../fonts/GothamRnd-Medium.otf');
+}
+
+/*Gotham X Narrow */
+@font-face{
+	font-family: 'GothamXNarrow-Black';
+	src:url('../fonts/GothamXNarrow-Black.otf');
+}
+@font-face{
+	font-family: 'GothamXNarrow-BlackItalic';
+	src:url('../fonts/GothamXNarrow-BlackItalic.otf');
+}
+@font-face{
+	font-family: 'GothamXNarrow-Bold';
+	src:url('../fonts/GothamXNarrow-Bold.otf'),
+	url('../fonts/GothamXNarrow-Bold.ttf');
+}
+@font-face{
+	font-family: 'GothamXNarrow-BoldItalic';
+	src:url('../fonts/GothamXNarrow-BoldItalic.otf'),
+	url('../fonts/GothamXNarrow-BoldItalic.ttf');
+}
+@font-face{
+	font-family: 'GothamXNarrow-Book';
+	src:url('../fonts/GothamXNarrow-Book.otf'),
+	url('../fonts/GothamXNarrow-Book.ttf');
+}
+@font-face{
+	font-family: 'GothamXNarrow-BookItalic';
+	src:url('../fonts/GothamXNarrow-BookItalic.otf'),
+	url('../fonts/GothamXNarrow-BookItalic.ttf');
+}
+@font-face{
+	font-family: 'GothamXNarrow-Light';
+	src:url('../fonts/GothamXNarrow-Light.otf'),
+	url('../fonts/GothamXNarrow-Light.ttf');
+}
+@font-face{
+	font-family: 'GothamXNarrow-LightItalic';
+	src:url('../fonts/GothamXNarrow-LightItalic.otf'),
+	url('../fonts/GothamXNarrow-LightItalic.ttf');
+}
+@font-face{
+	font-family: 'GothamXNarrow-Medium';
+	src:url('../fonts/GothamXNarrow-Medium.otf'),
+	url('../fonts/GothamXNarrow-Medium.ttf');
+}
+@font-face{
+	font-family: 'GothamXNarrow-MediumItalic';
+	src:url('../fonts/GothamXNarrow-MediumItalic.otf'),
+	url('../fonts/GothamXNarrow-MediumItalic.ttf');
+}
+@font-face{
+	font-family: 'GothamXNarrow-Thin';
+	src:url('../fonts/GothamXNarrow-Thin.otf');
+}
+@font-face{
+	font-family: 'GothamXNarrow-ThinItalic';
+	src:url('../fonts/GothamXNarrow-ThinItalic.otf');
+}
+@font-face{
+	font-family: 'GothamXNarrow-Ultra';
+	src:url('../fonts/GothamXNarrow-Ultra.otf');
+}
+@font-face{
+	font-family: 'GothamXNarrow-UltraItalic';
+	src:url('../fonts/GothamXNarrow-UltraItalic.otf');
+}
+@font-face{
+	font-family: 'GothamXNarrow-XLight';
+	src:url('../fonts/GothamXNarrow-XLight.otf');
+}
+@font-face{
+	font-family: 'GothamXNarrow-XLightItalic';
+	src:url('../fonts/GothamXNarrow-XLightItalic.otf');
+}
+
+
+
+
+

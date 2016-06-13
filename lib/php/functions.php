@@ -285,4 +285,23 @@
 		mysqli_close($con);
 	}
 
+	function editRow($name,$email,$phone,$addr,$status,$type){
+		require_once 'config/dbConfig.php';
+		$con = mysqli_connect(DB_HOST,DB_USER,DB_PASS);
+		if($con){
+			if(mysqli_select_db($con, DB_NAME)){
+				$sql = "update contacts set name = '".$name."', email = '".$email."', phone = '".$phone."', address = '".$addr."', status = '".$status."', lead_type = '".$type."' where email = '".$email."';";
+
+				echo $sql;
+				mysqli_query($con,$sql);
+			}
+			else{
+				die('Cannot connect to DB');
+			}
+		}
+		else{
+			die('Connection Error');
+		}
+		mysqli_close($con);
+	}
 ?>

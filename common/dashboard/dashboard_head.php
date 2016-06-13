@@ -17,13 +17,7 @@
 			}
 		});
 
-		function addNote(e, input){
-			var code = (e.keyCode ? e.keyCode : e.which);
-			if(code == 13) { 
-			 	//window.location="dashboard.php";
-			 	
-			}
-		}
+		
 
 		function clearPlace(input){
 			input.placeholder = "";
@@ -54,6 +48,50 @@
 			$( "<div "+onclickcode+" class='xd-space-active'>"+name+"</div>").insertBefore( ".xd-add-space" );
 			$('#space_content').show().load('details.php?id='+id);
 		}
+		function editRow(input){
+			var isDisabled = $('.xd-edit-row').find('.xd-table-edit-inputs').prop('disabled');
+			$('.xd-edit-row').find('.xd-table-edit-inputs').prop('disabled',!isDisabled);
+			$('.xd-edit-row').find('.xd-table-edit-inputs').toggleClass('xd-editable');
+			$('.xd-edit-row').find('.xd-edit-btn-save').toggle();
+		}
+
+		function saveEdit(input){
+			var name = $('.xd-edit-row').find('#editName').prop('value');
+			var email =$('.xd-edit-row').find('#editEmail').prop('value');	
+			var phone =$('.xd-edit-row').find('#editPhone').prop('value');	
+			var type =$('.xd-edit-row').find('#editType').prop('value');
+			var addr =$('.xd-edit-row').find('#editAddr').prop('value');
+			var status =$('.xd-edit-row').find('#editStatus').prop('value');
+
+			var string = '?';
+
+			if(name!=null){
+				string += 'name='+name;
+			}
+			if(email!=null){
+				if(string == '?') string += 'email='+email;
+				else string += '&email='+email;
+			}
+			if(phone!=null){
+				if(string == '?') string += 'phone='+phone;
+				else string += '&phone='+phone;
+			}
+			if(type!=null){
+				if(string == '?') string += 'type='+type;
+				else string += '&type='+type;
+			}
+			if(addr!=null){
+				if(string == '?') string += 'addr='+addr;
+				else string += '&addr='+addr;
+			}
+			if(status!=null){
+				if(string == '?') string += 'status='+status;
+				else string += '&status='+status;
+			}
+
+			window.location = 'dashboard.php'+string;
+		}
+
 		
     </script>
 </head>

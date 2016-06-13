@@ -31,6 +31,17 @@
 			return;
 		}
 	}
+	if(isset($_GET["name"]) && isset($_GET["email"]) && isset($_GET["phone"]) &&isset($_GET["type"]) && isset($_GET["addr"]) && isset($_GET["status"])){
+			$name = $_GET["name"];
+			$email = $_GET["email"];
+			$phone = $_GET["phone"];
+			$addr = $_GET["addr"];
+			$status = $_GET["status"];
+			$type = $_GET["type"];
+			require_once 'lib/php/functions.php';
+			editRow($name,$email,$phone,$addr,$status,$type);
+			header('Location: dashboard.php');
+	}
 
 	if($_SERVER['REQUEST_METHOD'] === 'POST'){
 

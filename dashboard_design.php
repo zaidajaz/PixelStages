@@ -119,88 +119,13 @@
 						<td>Recent Note</td>
 						<td>Status</td>
 					</tr>
-					<tr class="xd-data-tr" onmouseover="$(this).find('.xd-row-options').show();" onmouseleave="$(this).find('.xd-row-options').hide();">
-						<td>
-							<div class="xd-row-options">
-								<div class="xd-color-plate">
-									<div data-color="#EC2E10" onclick="saveColor(this);" class="xd-color-options img-circle" style="background-color:#EC2E10;"></div>
-									<div data-color="#22C60F" class="xd-color-options img-circle" style="background-color:#22C60F;"></div>
-									<div data-color="#10A4BF" class="xd-color-options img-circle" style="background-color:#10A4BF;"></div>
-									<div data-color="#8A0F9B" class="xd-color-options img-circle" style="background-color:#8A0F9B;"></div>
-									<div data-color="#C8B10D" class="xd-color-options img-circle" style="background-color:#C8B10D;"></div>
-								</div>
-								<div onclick="showColorPlate(this);" class="xd-color-options img-circle"></div>
-								<img src="Assets/edit.png">
-								<img src="Assets/delete.png">
-							</div>	
-						</td>
-						<td class="xd-name-td" id="1" onmouseover="$(this).find('.xd-details-hover-card').show();" onmouseleave="$(this).find('.xd-details-hover-card').hide()">
-							Zaid
-							<div class="xd-details-hover-card" id="card-1">
-								 <img src="Assets/hover-triangle.png" class="xd-details-triangle">
-								<div class="xd-details-hover-head">
-									<h2>Zaid Ajaz</h2>
-								</div>
-								<div class="xd-details-hover-head-separator"></div>
-								<div class="xd-details-hover-body">
-									<div class="xd-details-hover-left">
-										<ul>
-											<li>Address</li>
-											<li>City</li>
-											<li>State</li>
-											<li>Country</li>
-											<li>Zip</li>
-											<li>Phone</li>
-											<li>Graduation year</li>
-											<li>Fax</li>
-											<li>Email</li>
-											<li>Secondary Email</li>
-											<li>Lead Type</li>
-											<li>Source</li>
-											<li>Status</li>
-										</ul>
-									</div>
-									<div class="xd-details-hover-left xd-details-hover-right">
-										<ul>
-											<li>Daryaganj</li>
-											<li>Delhi</li>
-											<li>Delhi</li>
-											<li>India</li>
-											<li>110002</li>
-											<li>8800546491</li>
-											<li>2017</li>
-											<li>01143542759</li>
-											<li>ajazzaid@gmail.com</li>
-											<li>zaid@digikashmir.in</li>
-											<li>Customer</li>
-											<li>Direct</li>
-											<li>Cool</li>
-										</ul>
-									</div>									
-								</div>
-								<div class="xd-details-hover-body-separator"></div>
-								<div class="xd-details-hover-foot">
-									<a href="#" onclick="openInSpace(this)">Open in new Space</a>
-								</div>
-							</div>
-						</td>
-						<td>ajazzaid@gmail.com</td>
-						<td>8800546491</td>
-						<td>acb</td>
-						<td>Daryaganj Delhi</td>
-						<td class="xd-add-note-input-td"><input type="text" id="addNoteinput" name="addNoteinput"></td>
-						<td>Recent note was good</td>
-						<td>Active</td>	
-						<td class="xd-color-td" style="background-color:#6AC947;"></td>				
-					</tr>
-
 
 					<?php
 						if(isset($_SESSION["data"])){
 							foreach($_SESSION["data"] as $index => $row) {
 
 					?>
-					<tr class="xd-data-tr" onmouseover="$(this).find('.xd-row-options').show();" onmouseleave="$(this).find('.xd-row-options').hide();">
+					<tr class="xd-data-tr" onmouseover="$(this).find('.xd-row-options').show();$(this).addClass('xd-edit-row');" onmouseleave="$(this).find('.xd-row-options').hide();$(this).removeClass('xd-edit-row');">
 						<td>
 							<div class="xd-row-options">
 								<div class="xd-color-plate">
@@ -211,13 +136,14 @@
 									<div data-color="C8B10D" onclick="saveColor(this, <?php echo $row["id"];?>);" class="xd-color-options img-circle" style="background-color:#C8B10D;"></div>
 								</div>
 								<div onclick="showColorPlate(this);" class="xd-color-options img-circle"></div>
-								<img src="Assets/edit.png">
+								<img onclick="editRow(this)" src="Assets/edit.png">
 								<img onclick="window.location = 'dashboard.php?delete=<?php echo $row["id"];?>';" src="Assets/delete.png">
 							</div>	
 						</td>
-						<td class="xd-name-td" id="1" onmouseover="$(this).find('.xd-details-hover-card').show();" onmouseleave="$(this).find('.xd-details-hover-card').hide()">
-							<?php echo $row["name"]; ?>
-							<div class="xd-details-hover-card" id="card-1">
+						<td class="xd-name-td" onmouseover="$(this).find('.xd-details-hover-card').show();" onmouseleave="$(this).find('.xd-details-hover-card').hide()">
+							<input type="button" value="" class="xd-edit-btn-save" onclick="saveEdit(this);">
+							<input disabled id="editName" class="xd-table-edit-inputs" type="text" value="<?php echo $row["name"];?>">
+							<div class="xd-details-hover-card">
 								 <img src="Assets/hover-triangle.png" class="xd-details-triangle">
 								<div class="xd-details-hover-head">
 									<h2><?php echo $row["name"]; ?></h2>
@@ -331,15 +257,15 @@
 								</div>
 							</div>
 						</td>
-						<td><?php echo $row["email"]; ?></td>
-						<td><?php echo $row["phone"]; ?></td>
-						<td><?php echo $row["lead_type"]; ?></td>
-						<td><?php echo $row["address"]; ?></td>
+						<td><input disabled id="editEmail" class="xd-table-edit-inputs" value="<?php echo $row["email"]; ?>"></td>
+						<td><input disabled id="editPhone" class="xd-table-edit-inputs" value="<?php echo $row["phone"]; ?>"></td>
+						<td><input disabled id="editType" class="xd-table-edit-inputs" value="<?php echo $row["lead_type"]; ?>"></td>
+						<td><input disabled id="editAddr" class="xd-table-edit-inputs" value="<?php echo $row["address"]; ?>"></td>
 						<td class="xd-add-note-input-td">
-							<input type="text" onkeypress="addNote(event, this);" name="<?php echo 'addNote'.$row["id"]?>">
+							<input type="text" name="<?php echo 'addNote'.$row["id"]?>">
 						</td>
 						<td><?php echo $row["notes"]; ?></td>
-						<td><?php echo $row["status"]; ?></td>	
+						<td><input disabled id="editStatus" class="xd-table-edit-inputs" value="<?php echo $row["status"]; ?>"></td>	
 						<td class="xd-color-td" style="background-color:<?php echo $row["color_tag"]; ?>;"></td>				
 					</tr>
 					<?php

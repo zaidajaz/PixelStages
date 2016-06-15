@@ -291,8 +291,41 @@
 		if($con){
 			if(mysqli_select_db($con, DB_NAME)){
 				$sql = "update contacts set name = '".$name."', email = '".$email."', phone = '".$phone."', address = '".$addr."', status = '".$status."', lead_type = '".$type."' where email = '".$email."';";
+				mysqli_query($con,$sql);
+			}
+			else{
+				die('Cannot connect to DB');
+			}
+		}
+		else{
+			die('Connection Error');
+		}
+		mysqli_close($con);
+	}
 
-				echo $sql;
+	function logDetails($date,$ip,$email){
+		require_once 'config/dbConfig.php';
+		$con = mysqli_connect(DB_HOST,DB_USER,DB_PASS);
+		if($con){
+			if(mysqli_select_db($con, DB_NAME)){
+				$sql = "update users set last_login_date = '".$date."', last_login_ip = '".$ip."' where email = '".$email."';";
+				mysqli_query($con,$sql);
+			}
+			else{
+				die('Cannot connect to DB');
+			}
+		}
+		else{
+			die('Connection Error');
+		}
+		mysqli_close($con);
+	}
+	function saveNote($note,$id){
+		require_once 'config/dbConfig.php';
+		$con = mysqli_connect(DB_HOST,DB_USER,DB_PASS);
+		if($con){
+			if(mysqli_select_db($con, DB_NAME)){
+				$sql = "update contacts set notes = '".$note."' where id = ".$id.";";
 				mysqli_query($con,$sql);
 			}
 			else{

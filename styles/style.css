@@ -244,7 +244,7 @@ body
 
 .xd-user-hover-card:before{
   content: "";
-  display: block; /* reduce the damage in FF3.0 */
+  display: block;
   position: absolute;
   top:-6px;
   left: 291px;
@@ -473,6 +473,11 @@ background-image: linear-gradient(to bottom, #59C97D 0%, #25B35E 100%);
 	float: left;
 	margin-right: 45px;
 	margin-bottom: 10px;
+}
+.xd-space-active i, .xd-space-inactive i{
+	float: right;
+	margin-top: -22px;
+	margin-right: 5px;
 }
 .xd-space-inactive{
 	width:210px;
@@ -761,20 +766,20 @@ background-image: linear-gradient(to bottom, #59C97D 0%, #25B35E 100%);
 	/* background:url('../Assets/circle.png');
 	background-size: 100%; */
 	background:#5FCF80;
-	position: absolute;
 	margin-left: 82%;
 	margin-top: 18%;
 	cursor: pointer;
 	text-align: center;
 	padding-top: 15px;
 	border-radius: 50%;
+	position: fixed;
+    bottom: 0;
 }
 .xd-add-form-submit{
 	width: 82px;
 	height: 82px;
 	background:url('../Assets/tick1.png') no-repeat;
 	background-size: 100%;
-	position: absolute;
 	margin-left: 81.9%;
 	margin-top: 18%;
 	cursor: pointer;
@@ -784,6 +789,8 @@ background-image: linear-gradient(to bottom, #59C97D 0%, #25B35E 100%);
 	border:none;
 	outline:none;
 	display: none;
+	position: fixed;
+    bottom: 0;
 }
 
 .xd-floating-add-btn h1{
@@ -804,7 +811,8 @@ background-image: linear-gradient(to bottom, #59C97D 0%, #25B35E 100%);
 	width:572px;
 	height: 415px;
 	background: #5fcf80;
-	position: absolute;
+	position: fixed;
+	bottom:95px;
 	margin-left: calc(82% - 505px);
 	margin-top: calc(18% - 430px);
 	border-radius: 5px;
@@ -816,7 +824,7 @@ background-image: linear-gradient(to bottom, #59C97D 0%, #25B35E 100%);
 }
 .xd-add-hover-card:before{
 	content: "";
-  display: block; /* reduce the damage in FF3.0 */
+  display: block;
   position: absolute;
   top:414px;
   left: 535px;

@@ -43,6 +43,14 @@
 			header('Location: dashboard.php');
 	}
 
+	if(isset($_GET["note"]) && isset($_GET["id"])){
+		$note = $_GET["note"];
+		$id = $_GET["id"];
+		require_once 'lib/php/functions.php';
+		saveNote($note,$id);
+		header('Location: dashboard.php');
+	}
+
 	if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 		if(isset($_POST["addFirstName"])){
@@ -107,10 +115,13 @@
 				if($result = mysqli_query($con, $query)){
 					if(mysqli_num_rows($result) > 0){
 						while($row = mysqli_fetch_assoc($result)){
-							if($password == $row['password']){
-								//echo 'Login Successful';
+							$hashedPass = md5(sha1(sha1(md5(md5(sha1(md5($password)))))));
+							if($hashedPass == $row['password']){
 								$_SESSION['username'] = $row['name'];
 								$_SESSION['email'] = $email;
+								require_once 'lib/php/functions.php';
+								date_default_timezone_set("Asia/Kolkata");
+								logDetails(date("Y-m-d H:m:s"),$_SERVER["REMOTE_ADDR"],$email);
 							}
 							else{
 								header('Location: login.php?error=password');
@@ -170,6 +181,9 @@
 					if(mysqli_num_rows($result) > 0){
 						$_SESSION['username'] = $name;
 						$_SESSION['email'] = $email;
+						require_once 'lib/php/functions.php';
+						date_default_timezone_set("Asia/Kolkata");
+						logDetails(date("Y-m-d H:m:s"),$_SERVER["REMOTE_ADDR"],$email);
 					}
 					else{
 						header('Location: index.php?error=email');
@@ -212,6 +226,9 @@
 									if(mysqli_num_rows($result) > 0){
 										$_SESSION['username'] = $name;
 										$_SESSION['email'] = $email;
+										require_once 'lib/php/functions.php';
+										date_default_timezone_set("Asia/Kolkata");
+										logDetails(date("Y-m-d H:m:s"),$_SERVER["REMOTE_ADDR"],$email);
 									}
 									else{
 										header('Location: index.php?error=email');

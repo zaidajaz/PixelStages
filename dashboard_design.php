@@ -262,7 +262,7 @@
 						<td><input disabled id="editType" class="xd-table-edit-inputs" value="<?php echo $row["lead_type"]; ?>"></td>
 						<td><input disabled id="editAddr" class="xd-table-edit-inputs" value="<?php echo $row["address"]; ?>"></td>
 						<td class="xd-add-note-input-td">
-							<input type="text" name="<?php echo 'addNote'.$row["id"]?>">
+							<input type="text" onkeypress="saveNote(event,this);" name="<?php echo 'addNote'.$row["id"]?>">
 						</td>
 						<td><?php echo $row["notes"]; ?></td>
 						<td><input disabled id="editStatus" class="xd-table-edit-inputs" value="<?php echo $row["status"]; ?>"></td>	

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="styles/style.css" type="text/css">
     <link rel="stylesheet" href="styles/fonts.css" type="text/css">
+    <script src="https://use.fontawesome.com/6cab19a7e8.js"></script>
     <script type="text/javascript" src="js/valid.js"></script>
 
     <script type="text/javascript">
@@ -18,6 +19,21 @@
 				$('#searchForm').submit();
 			}
 		});
+
+		function saveNote(event,input){
+		    var keycode = (event.keyCode ? event.keyCode : event.which);
+		    if(keycode=="13"){
+		    	var note = $(input).prop('value');
+		    	var id = $(input).prop('name');
+		    	id = id.substring(7,id.length);
+		    	if (!note.match(/^([A-Z0-9 a-z,/.]{3,30}$)/i)) {
+					alert('Invalid characters in Note');
+				}
+				else{
+					window.location = 'dashboard.php?note='+note+'&id='+id;
+				}
+		    }
+		}
 
 		function clearPlace(input){
 			input.placeholder = "";
@@ -45,9 +61,15 @@
 			var onclickcode ="onClick = " + "\""+jCode+"\"";
 
 			$('.xd-space-active').removeClass('xd-space-active').addClass('xd-space-inactive');
-			$( "<div "+onclickcode+" class='xd-space-active'>"+name+"</div>").insertBefore( ".xd-add-space" );
+			$( "<div "+onclickcode+" class='xd-space-active'><i class='fa fa-times' onclick='closeSpace(this);'></i>"+name+"</div>").insertBefore( ".xd-add-space" );
 			$('#space_content').show().load('details.php?id='+id);
 		}
+
+		function closeSpace(input){
+			$("#space_content").fadeOut();
+			$(input).parent().hide();
+		}
+
 		function editRow(input){
 			var isDisabled = $('.xd-edit-row').find('.xd-table-edit-inputs').prop('disabled');
 			$('.xd-edit-row').find('.xd-table-edit-inputs').prop('disabled',!isDisabled);
@@ -191,7 +213,7 @@
 		<div class="row xd-spaces-row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="xd-spaces-container">
-					<div onclick="$('#space_content').hide();$('.xd-spaces-container').find('.xd-space-active').removeClass('xd-space-active').addClass('xd-space-inactive'); $(this).toggleClass('xd-space-inactive').toggleClass('xd-space-active');" class="xd-space-active">
+					<div id="homeSpace" onclick="$('#space_content').hide();$('.xd-spaces-container').find('.xd-space-active').removeClass('xd-space-active').addClass('xd-space-inactive'); $(this).toggleClass('xd-space-inactive').toggleClass('xd-space-active');" class="xd-space-active">
 						Home
 					</div>
 					<div class="xd-add-space">

@@ -35,69 +35,69 @@
 			</div>
 		</div>
 		<!--Data Table Row -->
-		<form method="post" id="addDetailsForm action="dashboard.php">
+		<form method="post" id="addDetailsForm" onsubmit="return validate('addDetails');" action="dashboard.php">
 		<div class="row xd-data-row">
-			<input class="xd-add-form-submit" type="submit" value="">
+			<input class="xd-add-form-submit" id="xd-add-form-submit" type="submit" value="">
 			<div class="xd-floating-add-btn" onclick="$(this).toggle();$('.xd-add-hover-card').show();$('.xd-add-form-submit').show();">
 					<div class="xd-floating-add-btn-extra"></div>
 					<h1>+</h1>
 			</div>
-			<div class="xd-add-hover-card">
+			<div class="xd-add-hover-card" id="xd-add-hover-card">
 				<div class="xd-add-hover-sec1">
 					<ul>
-						<li><input onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" name="addFirstName" data-placeholder="First Name" placeholder="First Name"></li>
-						<li><input onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" name="addLastName" placeholder="Last Name" data-placeholder="Last Name"></li>
-						<li><input onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" name="addEmail" data-placeholder="Email" placeholder="Email"></li>
+						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" id="addFirstName" name="addFirstName" data-placeholder="First Name" placeholder="First Name"></li>
+						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" id="addLastName" name="addLastName" placeholder="Last Name" data-placeholder="Last Name"></li>
+						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="email" id="addEmail" name="addEmail" data-placeholder="Email" placeholder="Email"></li>
 					</ul>
 					<ul>
-						<li><input onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" name="addPhone" placeholder="Phone" data-placeholder="Phone"></li>
-						<li><input onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" name="addFax" placeholder="Fax" data-placeholder="Fax" ></li>
-						<li><input onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" name="addGradYear" placeholder="Graduation Year" data-placeholder="Graduation Year"></li>
+						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="tel" pattern="^\d{10,14}$" title="XXXXXXXXXX" maxlength="14" id="addPhone" name="addPhone" placeholder="Phone" data-placeholder="Phone"></li>
+						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="tel" pattern="^\d{10,14}$" title="XXXXXXXXXX" maxlength="14" id="addFax" name="addFax" placeholder="Fax" data-placeholder="Fax" ></li>
+						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="tel" pattern="^\d{4,4}$" title="e.g, 2016" maxlength="4" id="addGradYear" name="addGradYear" placeholder="Graduation Year" data-placeholder="Graduation Year"></li>
 					</ul>
 				</div>
 				<div class="xd-add-hover-sec2">
 					<label class="radio-inline xd-add-hover-radio-label">
-				      <input type="radio" value="Male" name="addGender">Male
+				      <input required type="radio" value="Male" id="addGender" name="addGender">Male
 				    </label>
 				    <label class="radio-inline xd-add-hover-radio-label">
-				      <input type="radio" value="Female" name="addGender">Female
+				      <input required type="radio" value="Female" name="addGender" id="addGender">Female
 				    </label>
 				    <label class="radio-inline xd-add-hover-radio-label">
-				      <input type="radio" value="Others" name="addGender">Others
+				      <input required type="radio" value="Others" name="addGender" id="addGender">Others
 				    </label>
 				</div>
 				<div class="xd-add-hover-sec1 xd-add-hover-sec3">
 					<ul>
-						<li><input onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" name="addAddress" placeholder="Address" data-placeholder="Address"></li>
-						<li><input onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" name="addState" placeholder="State" data-placeholder="State"></li>
-						<li><input onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" name="addCity" placeholder="City" data-placeholder="City"></li>
+						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" id="addAddress" name="addAddress" placeholder="Address" data-placeholder="Address"></li>
+						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" id="addState" name="addState" placeholder="State" data-placeholder="State"></li>
+						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" id="addCity" name="addCity" placeholder="City" data-placeholder="City"></li>
 					</ul>
 				</div>
 				<div class="xd-add-hover-sec1 xd-add-hover-sec4">
 					<ul>
-						<li><input onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" name="addProfile" placeholder="Profile" data-placeholder="Profile"></li>
-						<li><input onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" name="addAttachment" placeholder="Attachments" data-placeholder="Attachments"></li>
+						<li><input onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" id="addProfile" name="addProfile" placeholder="Profile" data-placeholder="Profile"></li>
+						<li><input onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" id="addAttachment" name="addAttachment" placeholder="Attachments" data-placeholder="Attachments"></li>
 					</ul>
 				</div>
 				<div class="xd-add-hover-sec1 xd-add-hover-sec5">
 					<ul>
 						<li>
 						<div class="xd-add-hover-select">
-							<select name="addStatus">
+							<select name="addStatus" id="addStatus">
 								<option>Status</option>
 							</select>
 						</div>
 						</li>
 						<li>
 						<div class="xd-add-hover-select">
-							<select name="addSource">
+							<select name="addSource" id="addSource">
 								<option>Source</option>
 							</select>
 						</div>
 						</li>
 						<li>
 						<div class="xd-add-hover-select xd-add-hover-select3">
-							<select name="addOwner">
+							<select name="addOwner" id="addOwner">
 								<option>Owner</option>
 							</select>
 						</div>

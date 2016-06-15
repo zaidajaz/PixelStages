@@ -22,6 +22,7 @@
     		}
     	}
     </script>
+    <script type="text/javascript" src="js/valid.js"></script>
 </head>
 <body class="xd-login-body">
 

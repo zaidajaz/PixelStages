@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="styles/style.css" type="text/css">
     <link rel="stylesheet" href="styles/fonts.css" type="text/css">
+    <script type="text/javascript" src="js/valid.js"></script>
+
     <script type="text/javascript">
     	
     	$('#searchBar').keypress(function(event){
@@ -16,8 +18,6 @@
 				$('#searchForm').submit();
 			}
 		});
-
-		
 
 		function clearPlace(input){
 			input.placeholder = "";
@@ -132,9 +132,10 @@
 	<div class="container-fluid">
 		<div class="row xd-search-row">
 			<div class="col-lg-8 col-md-8 hidden-sm hidden-xs">
+
 			</div>
 			<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-				<form method="get" action="" id="searchform">
+				<form method="get" action="" id="searchform" onsubmit="return validate('search');">
 					<input type="text" class="xd-search-bar" id="searchBar" name="q" value="<?php if(isset($_GET["q"])) echo $_GET["q"]; ?>">
 				</form>
 			</div>
@@ -146,14 +147,14 @@
 				</div>
 				<div class="xd-advance-search-hover-card">
 					<img src="Assets/hover-triangle.png" class="xd-advance-hover-triangle">
-					<form action="" method="post">
+					<form action="" method="post" onsubmit="return validate('advSearch');">
 						<div class="xd-advance-search-container">
 							<div class="xd-advance-left-inputs">
-								<input type="text" class="xd-advance-input" onfocus="this.placeholder='';" onblur="this.placeholder='First Name';" name="advFirstName" placeholder="First Name">
-								<input type="text" onfocus="this.placeholder='';" onblur="this.placeholder='Email';" class="xd-advance-input" name="advEmail" placeholder="Email">
-								<input type="text" onfocus="this.placeholder='';" onblur="this.placeholder='City';" class="xd-advance-input" name="advCity" placeholder="City">
+								<input type="text" class="xd-advance-input" onfocus="this.placeholder='';" onblur="this.placeholder='First Name';" name="advFirstName" id="advFirstName" placeholder="First Name">
+								<input type="email" onfocus="this.placeholder='';" onblur="this.placeholder='Email';" class="xd-advance-input" name="advEmail" id="advEmail" placeholder="Email">
+								<input type="text" onfocus="this.placeholder='';" onblur="this.placeholder='City';" class="xd-advance-input" name="advCity" id="advCity" placeholder="City">
 								<div class="xd-advance-input xd-advance-input-select">
-									<select name="advStage" placeholder="Stage">
+									<select name="advStage" placeholder="Stage" id="advStage">
 										<option>Stage 1</option>
 										<option>Stage 2</option>
 										<option>Stage 3</option>
@@ -164,11 +165,11 @@
 								<input type="submit" name="adv_search" value="Search" class="xd-advance-search-btn xd-adv-btn-left">
 							</div>
 							<div class="xd-advance-right-inputs">
-								<input type="text" class="xd-advance-input" onfocus="this.placeholder='';" onblur="this.placeholder='Last Name';" name="advLastName" placeholder="Last Name">
-								<input type="text" onfocus="this.placeholder='';" onblur="this.placeholder='Phone';" class="xd-advance-input" name="advPhone" placeholder="Phone">
-								<input type="text" onfocus="this.placeholder='';" onblur="this.placeholder='State';" class="xd-advance-input" name="advState" placeholder="State">
+								<input type="text" class="xd-advance-input" onfocus="this.placeholder='';" onblur="this.placeholder='Last Name';" name="advLastName" id="advLastName" placeholder="Last Name">
+								<input type="tel" pattern="^\d{10,14}$" title="XXXXXXXXXX" maxlength="14" onfocus="this.placeholder='';" onblur="this.placeholder='Phone';" class="xd-advance-input" name="advPhone" placeholder="Phone">
+								<input type="text" onfocus="this.placeholder='';" onblur="this.placeholder='State';" class="xd-advance-input" name="advState" id="advState" placeholder="State">
 								<div class="xd-advance-input xd-advance-input-select">
-									<select name="advOwner" placeholder="Owner">
+									<select name="advOwner" placeholder="Owner" id="advOwner">
 										<option>Owner 1</option>
 										<option>Owner 2</option>
 										<option>Owner 3</option>

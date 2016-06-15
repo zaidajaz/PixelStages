@@ -6,7 +6,7 @@
 	}
  include('common/login/login_header.php'); ?>
 
-				<form method="post" action="dashboard.php">
+				<form method="post" action="dashboard.php" onsubmit="return validate('login');">
 				  <fieldset class="form-group">
 				    <input type="email" required autocomplete="off" onfocus="clearField(this);" onblur="fillBack(this);" class="form-control xd-login-input" id="loginemail" name="loginemail" placeholder="Email">
 				  </fieldset>
@@ -18,5 +18,6 @@
 				    <small class="xd-forgot-password"><a href="forgot.php">Hey! I forgot my access details</a></small>
 				  </fieldset>
 				 </form>
+				 <div id="xd-info" style="display:none;"></div>
 
 <?php include('common/login/login_footer.php'); ?>

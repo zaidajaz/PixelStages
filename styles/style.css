@@ -574,18 +574,21 @@ background-image: linear-gradient(to bottom, #59C97D 0%, #25B35E 100%);
 }
 .xd-row-options{
 	height: 50px;
+	width: 100px;
 	padding:0 !important;
 	position: absolute;
-	margin-left: -75px;
-	margin-top: 0px;
+	margin-top: -23px;
 	border-bottom:none !important;
 	display: none;
+	text-align: center;
+	margin-left: -95px;
 }
-.xd-row-options img{
+.xd-row-options img, .xd-row-options div{
 	width: 16px;
 	float: left;
 	margin-right: 15px;
 	cursor: pointer;
+	margin-top: 15px;
 }
 .xd-color-plate{
 	width: 13px;

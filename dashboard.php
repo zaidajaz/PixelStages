@@ -1,36 +1,7 @@
 <?php 
 	session_start();
 	require_once 'config/dbConfig.php';
-
-	if(isset($_GET["delete"])){
-		$id = $_GET["delete"];
-		require_once 'lib/php/functions.php';
-		removeFromDb($id);
-		header('Location: dashboard.php');
-	}
-
-	if(isset($_GET["color"]) && isset($_GET["id"])){
-		require_once 'lib/php/functions.php';
-		if(isValid($_GET["color"])){
-			if(isValid($_GET["id"])){
-				$color = $_GET["color"];
-				$id = $_GET["id"];
-				updateColor($color, $id);
-				header('Location: dashboard.php');
-			}
-
-		}
-	}
-
-	if(isset($_GET["q"])){
-		require_once 'lib/php/functions.php';
-		if(isValid($_GET["q"])){
-			$searchQuery = $_GET["q"];
-			searchbyQ($searchQuery);
-			require_once('dashboard_design.php');
-			return;
-		}
-	}
+	
 	if(isset($_GET["name"]) && isset($_GET["email"]) && isset($_GET["phone"]) &&isset($_GET["type"]) && isset($_GET["addr"]) && isset($_GET["status"])){
 			$name = $_GET["name"];
 			$email = $_GET["email"];
@@ -41,14 +12,6 @@
 			require_once 'lib/php/functions.php';
 			editRow($name,$email,$phone,$addr,$status,$type);
 			header('Location: dashboard.php');
-	}
-
-	if(isset($_GET["note"]) && isset($_GET["id"])){
-		$note = $_GET["note"];
-		$id = $_GET["id"];
-		require_once 'lib/php/functions.php';
-		saveNote($note,$id);
-		header('Location: dashboard.php');
 	}
 
 	if($_SERVER['REQUEST_METHOD'] === 'POST'){

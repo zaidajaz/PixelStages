@@ -12,13 +12,6 @@
     <script type="text/javascript" src="js/valid.js"></script>
 
     <script type="text/javascript">
-    	
-    	$('#searchBar').keypress(function(event){
-			var keycode = (event.keyCode ? event.keyCode : event.which);
-			if(keycode == '13'){
-				$('#searchForm').submit();
-			}
-		});
 
 		function saveNote(event,input){
 		    var keycode = (event.keyCode ? event.keyCode : event.which);
@@ -30,7 +23,10 @@
 					alert('Invalid characters in Note');
 				}
 				else{
-					window.location = 'dashboard.php?note='+note+'&id='+id;
+					$(input).parent().next().html(note);
+					$.get( "lib/php/data.php?note="+note+'&id='+id, function( data ) {
+					});
+					//window.location = "lib/php/data.php?note="+note+'&id='+id;
 				}
 		    }
 		}
@@ -49,11 +45,6 @@
 
 		function showColorPlate(input){
 			$(input).parent().find('.xd-color-plate').slideToggle();
-		}
-
-		function saveColor(input, id){
-			var color = $(input).data('color');
-			window.location = 'dashboard.php?color='+color+'&id='+id;
 		}
 		function CreateSpace(id,name){
 			var jCode = "$('#space_content').show().load('details.php?id="+id+"');$('.xd-spaces-container').find('.xd-space-active').removeClass('xd-space-active').addClass('xd-space-inactive'); $(this).toggleClass('xd-space-inactive').toggleClass('xd-space-active');";
@@ -157,9 +148,7 @@
 
 			</div>
 			<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-				<form method="get" action="" id="searchform" onsubmit="return validate('search');">
-					<input type="text" class="xd-search-bar" id="searchBar" name="q" value="<?php if(isset($_GET["q"])) echo $_GET["q"]; ?>">
-				</form>
+					<input type="text" class="xd-search-bar" id="searchBar" name="q">
 			</div>
 			<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
 				<div class="xd-advanced-search">

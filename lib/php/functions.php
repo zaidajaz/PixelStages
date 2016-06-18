@@ -67,7 +67,7 @@
 			 	$filter = $_GET["filter"];
 			 }
 		}
-		require_once 'config/dbConfig.php';
+		require_once $_SERVER["DOCUMENT_ROOT"].'/vincentLeads'.'/config/dbConfig.php';
 		$con = mysqli_connect(DB_HOST,DB_USER,DB_PASS);
 		if($con){
 			if(mysqli_select_db($con, DB_NAME)){
@@ -139,7 +139,7 @@
 	}	
 
 	function removeFromDb($id){
-		require_once 'config/dbConfig.php';
+		require_once $_SERVER["DOCUMENT_ROOT"].'/vincentLeads'.'/config/dbConfig.php';
 		$con = mysqli_connect(DB_HOST,DB_USER,DB_PASS);
 		if($con){
 			if(mysqli_select_db($con, DB_NAME)){
@@ -158,7 +158,7 @@
 	}
 
 	function updateColor($color, $id){
-		require_once 'config/dbConfig.php';
+		require_once $_SERVER["DOCUMENT_ROOT"].'/vincentLeads'.'/config/dbConfig.php';
 		$con = mysqli_connect(DB_HOST,DB_USER,DB_PASS);
 		if($con){
 			if(mysqli_select_db($con, DB_NAME)){
@@ -176,7 +176,7 @@
 	}
 
 	function searchbyQ($searchQuery){
-		require_once 'config/dbConfig.php';
+		require_once $_SERVER["DOCUMENT_ROOT"].'/vincentLeads'.'/config/dbConfig.php';
 		$con = mysqli_connect(DB_HOST,DB_USER,DB_PASS);
 		if($con){
 			if(mysqli_select_db($con, DB_NAME)){
@@ -321,7 +321,7 @@
 		mysqli_close($con);
 	}
 	function saveNote($note,$id){
-		require_once 'config/dbConfig.php';
+		require_once $_SERVER["DOCUMENT_ROOT"].'/vincentLeads'.'/config/dbConfig.php';
 		$con = mysqli_connect(DB_HOST,DB_USER,DB_PASS);
 		if($con){
 			if(mysqli_select_db($con, DB_NAME)){

@@ -24,13 +24,48 @@
 
 					<li class="xd-filters-special-1">
 						<img src="Assets/change-stage.png">
-						<a href="#">Change Stage to</a>
+						<a>Change Stage to</a>
 						<img src="Assets/arrowdown.png" class="xd-arrow-down">
+						<ul id="xd-stage-list">
+							<li><a class="xd-filters-link" href="#" data-filter="">All Stages</a></li>
+							<li><a class="xd-filters-link" href="#" data-filter="applied">Appllied</a></li>
+							<li><a class="xd-filters-link" href="#" data-filter="interview">Interview</a></li>
+							<li><a class="xd-filters-link" href="#" data-filter="target">Target</a></li>
+							<li><a class="xd-filters-link" href="#" data-filter="testdone">Test Done</a></li>
+							<li><a class="xd-filters-link" href="#" data-filter="testschedule">Test Schedule</a></li>
+							<li><a class="xd-filters-link" href="#" data-filter="win">Win</a></li>
+						</ul>
 					</li>
 					<li class="xd-filters-special-2">
 						<img src="Assets/bulk-update.png">
-						<a href="#">Bulk Update</a>
+						<a>Bulk Update</a>
 						<img src="Assets/arrowdown.png" class="xd-arrow-down">
+						<ul id="xd-bulk-list">
+							<li>
+							<div class="xd-advance-input xd-advance-input-select xd-bulk-select">
+									<select name="advStage" placeholder="Field" id="bulkFieldSelect">
+										<option>Field</option>
+										<option value="address">Address</option>
+										<option value="city">City</option>
+										<option value="state">State</option>
+										<option value="country">Country</option>
+										<option value="zip">Zip</option>
+										<option value="grad_year">Graduation Year</option>
+										<option value="phone">Phone</option>
+										<option value="fax">Fax</option>
+										<option value="lead_type">Lead Type</option>
+										<option value="source">Source</option>
+										<option value="status">Status</option>
+									</select>	
+								</div>								
+							</li>
+							<li>
+								<input type="text" class="xd-advance-input" onfocus="clearPlace(this);" onblur="fillPlace(this);" placeholder='Value' name="bulkValue" id="bulkValue" data-placeholder="Value">
+							</li>
+							<li>
+								<input type="button" value="Update" id="bulkUpdatebtn" class="xd-advance-search-btn">
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</div>
@@ -108,6 +143,9 @@
 				</div>
 			</div>
 			</form>
+			<div id="xd-data-loading">
+				<img src="Assets/ajax-loader.gif">
+			</div>
 			<!-- Table space -->
 			<div id="xd-table-ajax">
 				

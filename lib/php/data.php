@@ -4,7 +4,7 @@
 				<table class="table-responsive">
 					<tr class="xd-table-header">
 						<td></td>
-						<td>Name</td>
+						<td><img src="Assets/tick.png" class="xd-select-row" data-selected='false'>Name</td>
 						<td>Email</td>
 						<td>Phone</td>
 						<td>Type</td>
@@ -35,6 +35,7 @@
 							</div>	
 						</td>
 						<td class="xd-name-td" onmouseover="$(this).find('.xd-details-hover-card').show();" onmouseleave="$(this).find('.xd-details-hover-card').hide()">
+							<img src="Assets/tick.png" data-selected='false' data-id="<?php echo $row["id"]; ?>" class="xd-row-select-row">
 							<input type="button" value="" class="xd-edit-btn-save" onclick="saveEdit(this);">
 							<input disabled id="editName" class="xd-table-edit-inputs" type="text" value="<?php echo $row["name"];?>">
 							<div class="xd-details-hover-card">
@@ -191,4 +192,64 @@
 					$('.xd-editable').removeClass('xd-editable').prop('disabled', true);
 					$(input).addClass('xd-editable').prop('disabled', false).focus();
 				});
+
+				var ids = [];
+
+				$('.xd-select-row').click(function(){
+					var selected = $(this).data('selected');
+					var id;
+					if(!selected){
+						$(this).prop('src','Assets/tick_on.png');
+						$('.xd-row-select-row').prop('src','Assets/tick_on.png');
+						$(this).data('selected',true);
+						$('.xd-row-select-row').data('selected',true);
+						
+						ids = [];
+						$('.xd-row-select-row').each(function(i, obj) {
+							id = $(this).data('id');
+							ids.push(id);
+						});
+					}
+					else{
+						$(this).prop('src','Assets/tick.png');
+						$('.xd-row-select-row').prop('src','Assets/tick.png');
+						$(this).data('selected',false);
+						$('.xd-row-select-row').data('selected',false);
+						ids = [];
+					}
+				});
+				$('.xd-row-select-row').click(function(){
+					var selected = $(this).data('selected');
+					if(!selected){
+						$(this).prop('src','Assets/tick_on.png');
+						$(this).data('selected',true);
+						var id = $(this).data('id');
+						ids.push(id);
+					}
+					else{
+						$(this).prop('src','Assets/tick.png');
+						$(this).data('selected',false);
+						var id = $(this).data('id');
+						var index = ids.indexOf(id);
+						ids.splice(index,1);
+					}
+				});
+
+				
+
+				$('#bulkUpdatebtn').click(function(){
+					var field = $('#bulkFieldSelect').prop('value');
+					var value = $('#bulkValue').prop('value');
+					if(field!='Field' && value !=''){
+						$('#xd-data-loading').fadeIn();
+						$("#xd-table-ajax").load('lib/php/data.php?update='+field+'&value='+value+'&id='+ids, function(){
+							$('#xd-data-loading').fadeOut();
+						});
+					}
+					$('.xd-filters-special-2').find('ul').hide();
+
+				});
+
+				
+
 			</script>

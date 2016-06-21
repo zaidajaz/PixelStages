@@ -4,6 +4,8 @@
 		
 		if(isset($_SESSION['username'])){
 			unset($_SESSION['username']);
+			unset($_SESSION['profilepic']);
+			unset($_SESSION['email']);
 		}
-			header('Location: index.php');
+		header('Location: index.php');
 ?>

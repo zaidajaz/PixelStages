@@ -26,6 +26,20 @@
 		            $('.xd-add-form-submit').hide();
 		            $('.xd-floating-add-btn').show();
 		        }
+
+		        subject = $(".xd-filters-special-1").find('ul'); 
+
+		        if(e.target.id != subject.prop('id') && !subject.has(e.target).length)
+		        {
+		            subject.hide();
+		        }
+		        subject = $(".xd-filters-special-2").find('ul'); 
+
+		        if(e.target.id != subject.prop('id') && !subject.has(e.target).length)
+		        {
+		            subject.hide();
+		       
+		        }
 		    });
 
 		    $("#xd-table-ajax").load("lib/php/data.php");
@@ -38,16 +52,28 @@
 			$("#xd-table-ajax").load("lib/php/data.php?filter="+filter);
 		});
 
-/*
-		var $loading = $('#xd-table-ajax');
+		$('.xd-filters-special-1').click(function(){
+			$(this).find('ul').slideToggle();
+		});
+		
+		$('.xd-filters-special-2').click(function(e){
+			if(e.target.id != 'bulkFieldSelect' && e.target.id != 'bulkValue' && e.target.id != 'bulkUpdatebtn'){
+				$(this).find('ul').toggle();
+			}
+		});
+
+		/*
+		var $loading = $('#xd-data-loading');
+		$loading.hide();
 		$(document)
 		  .ajaxStart(function () {
-		    $loading.fadeOut();
+		    $loading.fadeIn();
 		  })
 		  .ajaxStop(function () {
-		    $loading.fadeIn();
+		    $loading.fadeOut();
 		 });
 		 */
+		 
 
     </script>
 </body>

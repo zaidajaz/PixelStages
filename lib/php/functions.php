@@ -337,4 +337,21 @@
 		}
 		mysqli_close($con);
 	}
+	function bulkUpdate($updateField, $value, $condition){
+		require_once $_SERVER["DOCUMENT_ROOT"].'/vincentLeads'.'/config/dbConfig.php';
+		$con = mysqli_connect(DB_HOST,DB_USER,DB_PASS);
+		if($con){
+			if(mysqli_select_db($con, DB_NAME)){
+				$sql = "update contacts set ".$updateField." = '".$value."' where ".$condition;
+				mysqli_query($con,$sql);
+			}
+			else{
+				die('Cannot connect to DB');
+			}
+		}
+		else{
+			die('Connection Error');
+		}
+		mysqli_close($con);
+	}
 ?>

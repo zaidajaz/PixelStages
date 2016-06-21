@@ -64,7 +64,7 @@
 						<ul>
 							<li>
 								<?php 
-									$row["name"] == ''? $entry = '-': $entry = $row["name"]; 
+									$row["address"] == ''? $entry = '-': $entry = $row["address"]; 
 									echo $entry;
 								?>
 							</li>

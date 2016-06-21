@@ -105,7 +105,6 @@
 			window.location = 'dashboard.php'+string;
 		}
 
-		
     </script>
 </head>
 <body>
@@ -128,7 +127,7 @@
 					<div class="xd-user-hover-card">
 						<ul class="xd-user-list">
 						  <li class="xd-user-list-item-big">
-						  	<img class="xd-user-dp" src="Assets/mustache.png" class="img-circle">
+						  	<img class="xd-user-dp img-circle" src="<?php if(isset($_SESSION['profilepic'])) echo $_SESSION['profilepic'];?>" alt="profile-pic">
 						  	<h2>Hi, <?php echo $_SESSION['username'] ?></h2><small><?php echo $_SESSION['email'] ?></small>
 						  </li>
 						  <li class="xd-user-list-item"><img src="Assets/manage-profile.png"><a href="#">Manage Profile</a></li>

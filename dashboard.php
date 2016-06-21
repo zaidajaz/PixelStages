@@ -126,7 +126,7 @@
 		}
 		try {
 		  // Returns a `Facebook\FacebookResponse` object
-		  $response = $fb->get('/me?fields=id,name,email', $accessToken);
+		  $response = $fb->get('/me?fields=id,name,email,gender,bio,cover,religion,verified,website,work,about,picture', $accessToken);
 		} catch(Facebook\Exceptions\FacebookResponseException $e) {
 		  echo 'Graph returned an error: ' . $e->getMessage();
 		  exit;
@@ -135,8 +135,10 @@
 		  exit;
 		}
 		$user = $response->getGraphUser();
+		//echo '<pre>';print_r($user);echo '</pre>';
 		$email = $user['email'];
 		$name = $user['name'];
+		$profilepic = $user["picture"]["url"];
 		$query = "select * from users where email = '".$email."';";
 		if($con){
 			if(mysqli_select_db($con, DB_NAME)){
@@ -144,6 +146,7 @@
 					if(mysqli_num_rows($result) > 0){
 						$_SESSION['username'] = $name;
 						$_SESSION['email'] = $email;
+						$_SESSION['profilepic'] = $profilepic;
 						require_once 'lib/php/functions.php';
 						date_default_timezone_set("Asia/Kolkata");
 						logDetails(date("Y-m-d H:m:s"),$_SERVER["REMOTE_ADDR"],$email);

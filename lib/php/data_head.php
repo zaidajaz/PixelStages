@@ -32,6 +32,24 @@
 		}
 	}
 
+	if(isset($_GET["update"])){
+		if(isValid($_GET["update"]) && isValid($_GET["value"])){
+			$updateField = $_GET["update"];
+			$value = $_GET["value"];
+			$id = $_GET["id"];
+			$ids = explode(',', $id);
+			$condition = '';
+			foreach($ids as $index=>$idd)
+			//id = 10 or id = 11 or id = 9
+				if($index == 0)
+					$condition .= 'id = ' . $idd;
+				else
+					$condition .= ' or id = ' . $idd;
+			
+			bulkUpdate($updateField,$value, $condition);
+		}
+	}
+
 	if(!isset($_GET["q"]))
 	getDataTable();
 ?>

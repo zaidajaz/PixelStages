@@ -30,7 +30,7 @@
 									<div data-color="C8B10D" data-id="<?php echo $row["id"] ?>" class="xd-color-select xd-color-options img-circle" style="background-color:#C8B10D;"></div>
 								</div>
 								<div class="xd-color-options img-circle"></div>
-								<img onclick="editRow(this)" src="Assets/edit.png">
+								<img class='xd-edit-btn' data-id = '<?php echo $row["id"]; ?>' src="Assets/edit.png">
 								<img class="xd-delete-btn" data-id="<?php echo $row["id"];?>" src="Assets/delete.png">
 							</div>	
 						</td>
@@ -47,6 +47,7 @@
 								<div class="xd-details-hover-body">
 									<div class="xd-details-hover-left">
 										<ul>
+											<li>Gender</li>
 											<li>Address</li>
 											<li>City</li>
 											<li>State</li>
@@ -60,85 +61,98 @@
 											<li>Lead Type</li>
 											<li>Source</li>
 											<li>Status</li>
+											<li>Owner</li>
 										</ul>
 									</div>
 									<div class="xd-details-hover-left xd-details-hover-right">
 										<ul>
-											<li>
+											<li id="xd-data-gender">
 												<?php 
-													$row["name"] == ''? $entry = '-': $entry = $row["name"]; 
+													$row["gender"] == ''? $entry = '-': $entry = $row["gender"]; 
 													echo $entry;
 												?>
 											</li>
-											<li>
+											<li id="xd-data-addr">
+												<?php 
+													$row["address"] == ''? $entry = '-': $entry = $row["address"]; 
+													echo $entry;
+												?>
+											</li>
+											<li id="xd-data-city">
 												<?php 
 													$row["city"] == ''? $entry = '-': $entry = $row["city"]; 
 													echo $entry;
 												?>
 											</li>
-											<li>
+											<li id="xd-data-state">
 												<?php 
 													$row["state"] == ''? $entry = '-': $entry = $row["state"]; 
 													echo $entry;
 												?>
 											</li>
-											<li>
+											<li id="xd-data-country">
 												<?php 
 													$row["country"] == ''? $entry = '-': $entry = $row["country"]; 
 													echo $entry;
 												?>
 											</li>
-											<li>
+											<li id="xd-data-zip">
 												<?php 
 													$row["zip"] == ''? $entry = '-': $entry = $row["zip"]; 
 													echo $entry;
 												?>
 											</li>
-											<li>
+											<li id="xd-data-phone">
 												<?php 
 													$row["phone"] == ''? $entry = '-': $entry = $row["phone"]; 
 													echo $entry;
 												?>
 											</li>
-											<li>
+											<li id="xd-data-gradYear">
 												<?php 
 													$row["grad_year"] == ''? $entry = '-': $entry = $row["grad_year"]; 
 													echo $entry;
 												?>
 											</li>
-											<li>
+											<li id="xd-data-fax">
 												<?php 
 													$row["fax"] == ''? $entry = '-': $entry = $row["fax"]; 
 													echo $entry;
 												?>
 											</li>
-											<li>
+											<li id="xd-data-email">
 												<?php 
 													$row["email"] == ''? $entry = '-': $entry = $row["email"]; 
 													echo $entry;
 												?>
 											</li>
-											<li>
+											<li id="xd-data-secEmail">
 												<?php 
 													$row["sec_email"] == ''? $entry = '-': $entry = $row["sec_email"]; 
 													echo $entry;
 												?>
 											</li>
-											<li>
+											<li id="xd-data-leadType">
 												<?php 
 													$row["lead_type"] == ''? $entry = '-': $entry = $row["lead_type"]; 
 													echo $entry;
 												?>
 											</li>
-											<li>
+											<li id="xd-data-source">
 												<?php 
 													$row["source"] == ''? $entry = '-': $entry = $row["source"]; 
 													echo $entry;
 												?>
 											</li>
-											<li>
+											<li id="xd-data-status">
 												<?php 
 													$row["status"] == ''? $entry = '-': $entry = $row["status"]; 
+													echo $entry;
+												?>
+											</li>
+											<li id="xd-data-owner">
+												<?php 
+													$row["owner"] == ''? $entry = '-': $entry = $row["owner"]; 
 													echo $entry;
 												?>
 											</li>
@@ -148,7 +162,7 @@
 								</div>
 								<div class="xd-details-hover-body-separator"></div>
 								<div class="xd-details-hover-foot">
-									<a onclick="CreateSpace(<?php echo $row["id"];?>,<?php echo "'".$row["name"]."'";?>);">Open in new Space</a>
+									<a onclick="openinspace(this);" data-id ="<?php echo $row["id"];?>" data-name="<?php echo $row["name"];?>">Open in new Space</a>
 								</div>
 							</div>
 						</td>
@@ -173,7 +187,7 @@
 			<script>
 				$(".xd-delete-btn").click(function(){
 					var id = $(this).data('id');
-					$(this).parent().parent().parent().hide();
+					$(".xd-delete-btn[data-id='"+id+"']").parent().parent().parent().remove();
 					$.get( "lib/php/data.php?delete="+id, function( data ) {
 					});
 				});
@@ -184,42 +198,61 @@
 					var color = $(this).data("color");
 					var id = $(this).data("id");
 					$(this).parent().parent().parent().parent().find('.xd-color-td').css('background-color', '#'+color);
+					$(this).parent().slideToggle();
 					$.get( "lib/php/data.php?color="+color+'&id='+id, function( data ) {
 					});
-				});
-				$('td').click(function(){
-					var input = $(this).find(".xd-table-edit-inputs");
-					$('.xd-editable').removeClass('xd-editable').prop('disabled', true);
-					$(input).addClass('xd-editable').prop('disabled', false).focus();
 				});
 
 				var ids = [];
 
+				$('.xd-select-row').unbind().click();
 				$('.xd-select-row').click(function(){
 					var selected = $(this).data('selected');
 					var id;
+					var parent;
+					if($('#xd-table-ajax').css('display') == 'block'){
+						parent = $('#xd-table-ajax');
+					}
+					else{
+						$('#space_non_home').find('.xd-non-home-data').each(function(i,obj){
+							if($(this).css('display') == 'block'){
+								parent = $(this);
+							}
+						});
+					}
 					if(!selected){
 						$(this).prop('src','Assets/tick_on.png');
-						$('.xd-row-select-row').prop('src','Assets/tick_on.png');
+						$(parent).find('.xd-row-select-row').prop('src','Assets/tick_on.png');
 						$(this).data('selected',true);
-						$('.xd-row-select-row').data('selected',true);
-						
+						$(parent).find('.xd-row-select-row').data('selected',true);
 						ids = [];
-						$('.xd-row-select-row').each(function(i, obj) {
+						$(parent).find('.xd-row-select-row').each(function(i, obj) {
 							id = $(this).data('id');
 							ids.push(id);
 						});
 					}
 					else{
 						$(this).prop('src','Assets/tick.png');
-						$('.xd-row-select-row').prop('src','Assets/tick.png');
+						$(parent).find('.xd-row-select-row').prop('src','Assets/tick.png');
 						$(this).data('selected',false);
-						$('.xd-row-select-row').data('selected',false);
+						$(parent).find('.xd-row-select-row').data('selected',false);
 						ids = [];
 					}
 				});
+				$('.xd-row-select-row').unbind().click();
 				$('.xd-row-select-row').click(function(){
-					var selected = $(this).data('selected');
+					var parent;
+					if($('#xd-table-ajax').css('display') == 'block'){
+						parent = $('#xd-table-ajax');
+					}
+					else{
+						$('#space_non_home').find('.xd-non-home-data').each(function(i,obj){
+							if($(this).css('display') == 'block'){
+								parent = $(this);
+							}
+						});
+					}
+					var selected = $(parent).find(this).data('selected');
 					if(!selected){
 						$(this).prop('src','Assets/tick_on.png');
 						$(this).data('selected',true);
@@ -242,13 +275,78 @@
 					var value = $('#bulkValue').prop('value');
 					if(field!='Field' && value !=''){
 						$('#xd-data-loading').fadeIn();
-						$("#xd-table-ajax").load('lib/php/data.php?update='+field+'&value='+value+'&id='+ids, function(){
-							$('#xd-data-loading').fadeOut();
+						$.get('lib/php/data.php?update='+field+'&value='+value+'&id='+ids, function(){
+							refreshData();
 						});
 					}
 					$('.xd-filters-special-2').find('ul').hide();
 
 				});
+
+			$('.xd-edit-btn').click(function(){
+				var parent =  $(this).parent().parent().parent();
+
+
+				var name = parent.find('#editName').prop('value');			
+				var email = parent.find('#xd-data-email').html();
+				var phone = parent.find('#xd-data-phone').html();
+				var fax = parent.find('#xd-data-fax').html();
+				var gradYear = parent.find('#xd-data-gradYear').html();
+				var gender = parent.find('#xd-data-gender').html();
+				var leadType = parent.find('#xd-data-leadType').html();
+				var addr = parent.find('#xd-data-addr').html();
+				var state = parent.find('#xd-data-state').html();
+				var city = parent.find('#xd-data-city').html();
+				var country = parent.find('#xd-data-country').html();
+				var zip = parent.find('#xd-data-zip').html();
+				var secEmail = parent.find('#xd-data-secEmail').html();
+				var status = parent.find('#xd-data-status').html();
+				var source = parent.find('#xd-data-source').html();
+				var owner = parent.find('#xd-data-owner').html();
+
+
+				var firstName = name.split(" ")[0];
+				var lastName = name.split(" ")[1];
+				email = email.trim();
+				phone = phone.trim();
+				fax = fax.trim();
+				gradYear = gradYear.trim();
+				gender = gender.trim();
+				leadType = leadType.trim();
+				addr = addr.trim();
+				state = state.trim();
+				city = city.trim();
+				country = country.trim();
+				zip = zip.trim();
+				secEmail = secEmail.trim();
+				status = status.trim();
+				source = source.trim();
+				owner = owner.trim();
+
+				$('.xd-floating-add-btn').trigger('click');
+				$('#addFirstName').prop('value',firstName);
+				$('#addLastName').prop('value',lastName);
+				$('#addEmail').prop('value',email);
+				$('#addPhone').prop('value',phone);
+				$('#addFax').prop('value',fax);
+				$('#addGradYear').prop('value',gradYear);
+				$('#addAddress').prop('value',addr);
+				$('#addState').prop('value',state);
+				$('#addCity').prop('value',city);
+				$('#addCountry').prop('value',country);
+				$('#addZip').prop('value',zip);
+				$('#addLeadType').prop('value',leadType);
+				$('#addSecEmail').prop('value',secEmail);
+
+				$("#addGender[value='"+gender+"']").prop('checked',true);
+				$("#addStatus[value='"+status+"']").prop('selected',true);
+				$("#addSource[value='"+source+"']").prop('selected',true);
+				$("#addOwner[value='"+owner+"']").prop('selected',true);
+
+				$('#editForm').prop('value', $(this).data('id'));
+
+				
+			});
 
 				
 

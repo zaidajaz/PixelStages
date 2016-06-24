@@ -3,12 +3,10 @@
 	require_once 'lib/php/functions.php';
 	if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["addFirstName"])){
 		addFormSave();
-		?>
-		<script>window.location = 'dashboard.php';</script>
-		<?php
 	}
 ?>
-		<div id="space_content" class="xd-spaces-content"></div>
+		<div id="space_content" class="xd-spaces-content">
+		</div>
 		<!-- Filters Row -->
 		<div class="row xd-filters-row">
 			<div class="col-lg-12 col-md-12">
@@ -71,8 +69,8 @@
 			</div>
 		</div>
 		<!--Data Table Row -->
-		<form method="post" id="addDetailsForm" onsubmit="return validate('addDetails');" action="dashboard.php">
 		<div class="row xd-data-row">
+			<form method="post" id="addDetailsForm" action="dashboard.php">
 			<input class="xd-add-form-submit" id="xd-add-form-submit" type="submit" value="">
 			<div class="xd-floating-add-btn" onclick="$(this).toggle();$('.xd-add-hover-card').show();$('.xd-add-form-submit').show();">
 					<div class="xd-floating-add-btn-extra"></div>
@@ -81,14 +79,15 @@
 			<div class="xd-add-hover-card" id="xd-add-hover-card">
 				<div class="xd-add-hover-sec1">
 					<ul>
+						<li><input type="hidden" id="editForm" name="editForm" value="-1"></li>
 						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" id="addFirstName" name="addFirstName" data-placeholder="First Name" placeholder="First Name"></li>
 						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" id="addLastName" name="addLastName" placeholder="Last Name" data-placeholder="Last Name"></li>
 						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="email" id="addEmail" name="addEmail" data-placeholder="Email" placeholder="Email"></li>
 					</ul>
 					<ul>
-						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="tel" pattern="^\d{10,14}$" title="XXXXXXXXXX" maxlength="14" id="addPhone" name="addPhone" placeholder="Phone" data-placeholder="Phone"></li>
-						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="tel" pattern="^\d{10,14}$" title="XXXXXXXXXX" maxlength="14" id="addFax" name="addFax" placeholder="Fax" data-placeholder="Fax" ></li>
-						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="tel" pattern="^\d{4,4}$" title="e.g, 2016" maxlength="4" id="addGradYear" name="addGradYear" placeholder="Graduation Year" data-placeholder="Graduation Year"></li>
+						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="tel" pattern="^\d{10,14}$" title="XXXXXXXXXX" maxlength="14" onkeypress="return checkNum(event);" id="addPhone" name="addPhone" placeholder="Phone" data-placeholder="Phone"></li>
+						<li><input required onfocus="clearPlace(this);" onkeypress="return checkNum(event);" onblur="fillPlace(this);" type="tel" pattern="^\d{10,14}$" title="XXXXXXXXXX" maxlength="14" id="addFax" name="addFax" placeholder="Fax" data-placeholder="Fax" ></li>
+						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="tel" pattern="^\d{4,4}$" title="e.g, 2016" maxlength="4" id="addGradYear" onkeypress="return checkNum(event);" name="addGradYear" placeholder="Graduation Year" data-placeholder="Graduation Year"></li>
 					</ul>
 				</div>
 				<div class="xd-add-hover-sec2">
@@ -106,13 +105,29 @@
 					<ul>
 						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" id="addAddress" name="addAddress" placeholder="Address" data-placeholder="Address"></li>
 						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" id="addState" name="addState" placeholder="State" data-placeholder="State"></li>
+					</ul>
+					<ul>
 						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" id="addCity" name="addCity" placeholder="City" data-placeholder="City"></li>
+						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" id="addCountry" name="addCountry" placeholder="Country" data-placeholder="Country"></li>
+						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" onkeypress="return checkNum(event);" type="text" maxlength="6" id="addZip" name="addZip" placeholder="Zip" data-placeholder="Zip"></li>
 					</ul>
 				</div>
 				<div class="xd-add-hover-sec1 xd-add-hover-sec4">
 					<ul>
-						<li><input onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" id="addProfile" name="addProfile" placeholder="Profile" data-placeholder="Profile"></li>
-						<li><input onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" id="addAttachment" name="addAttachment" placeholder="Attachments" data-placeholder="Attachments"></li>
+						<li>
+							<input disabled type="text" id="addProfile" name="addProfile" placeholder="Profile">
+							<input type="file" id="addProfileFile" name="addProfileFile" data-field="addProfile">
+						</li>
+						<li>
+							<input disabled type="text" id="addAttachment" name="addAttachment" placeholder="Attachments">
+							<input type="file" id="addAttachmentFile" name="addAttachmentFile" data-field="addAttachment">
+						</li>
+					</ul>
+				</div>
+				<div class="xd-add-hover-sec1 xd-add-hover-sec4 xd-add-hover-sec6">
+					<ul>
+						<li><input required onfocus="clearPlace(this);" onblur="fillPlace(this);" type="text" id="addLeadType" name="addLeadType" placeholder="Lead Type" data-placeholder="Lead Type"></li>
+						<li><input onfocus="clearPlace(this);" onblur="fillPlace(this);" type="email" id="addSecEmail" name="addSecEmail" placeholder="Secondary Email" data-placeholder="Secondary Email"></li>
 					</ul>
 				</div>
 				<div class="xd-add-hover-sec1 xd-add-hover-sec5">
@@ -146,6 +161,10 @@
 			<div id="xd-data-loading">
 				<img src="Assets/ajax-loader.gif">
 			</div>
+
+			<!--Non home data -->
+			<div id="space_non_home"></div>
+			<!-- Non home data -->
 			<!-- Table space -->
 			<div id="xd-table-ajax">
 				

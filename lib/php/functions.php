@@ -15,6 +15,11 @@
 		isset($_POST["addStatus"])? $status = $_POST["addStatus"]: $error = 'Status Required';
 		isset($_POST["addSource"])? $source = $_POST["addSource"]: $error = 'Source Required';
 		isset($_POST["addOwner"])? $owner = $_POST["addOwner"]: $error = 'Owner Required';
+		isset($_POST["addCountry"])? $country = $_POST["addCountry"]: $error = 'Country Required';
+		isset($_POST["addZip"])? $zip = $_POST["addZip"]: $error = 'Zip Required';
+		isset($_POST["addSecEmail"])? $secEmail = $_POST["addSecEmail"]: $error = 'Secondary Email Required';
+		isset($_POST["addLeadType"])? $leadType = $_POST["addLeadType"]: $error = 'Lead Type Required';
+		isset($_POST["editForm"])? $editForm = $_POST["editForm"]: $error = 'Edit Form Field Missing';
 
 		if($error == ''){
 			isValid($fname)?  : $error='Invalid First Name';
@@ -30,25 +35,51 @@
 			isValid($status)?  : $error='Invalid Status';
 			isValid($source)?  : $error='Invalid source';
 			isValid($owner)?  : $error='Invalid Owner';
+			isValid($country)?  : $error='Invalid Country';
+			isValid($zip)?  : $error='Invalid Zip';
+			isValid($secEmail)?  : $error='Invalid Secondary Email';
+			isValid($leadType)?  : $error='Invalid Lead Type';
+			isValid($editForm)?  : $error='Invalid Edit Value';
 		}
-
+		
 		if($error == ''){
-			addToDB($fname,$lname,$email,$phone,$fax,$grad_year,$gender,$address,$state,$city,$status,$source,$owner);
+			$dataSaved = addToDB($fname,$lname,$email,$phone,$fax,$grad_year,$gender,$address,$state,$city,$status,$source,$owner,$country,$zip,$secEmail,$leadType,$editForm);
+			//if($dataSaved)
+				//uploadFiles($profile,$attachment);
 		}
 	}
 
+	function uploadFiles($profile,$attachment){
+		/*
+		$target_dir = "uploads/profile";
+		$target_file = $target_dir . basename($_FILES["addProfileFile"]["name"]);
+		if (move_uploaded_file($_FILES["addProfileFile"]["tmp_name"], $target_file)) {
+        	echo "The file ". basename( $_FILES["addProfileFile"]["name"]). " has been uploaded.";
+    	}
+		$target_dir = "uploads/attachment";
+		$target_file = $target_dir . basename($_FILES["addAttachmentFile"]["name"]);
+		if (move_uploaded_file($_FILES["addAttachmentFile"]["tmp_name"], $target_file)) {
+        	echo "The file ". basename( $_FILES["addAttachmentFile"]["name"]). " has been uploaded.";
+    	}*/
+	}
 	function isValid($input){
 		return true;
 	}
 
-	function addToDB($fname,$lname,$email,$phone,$fax,$grad_year,$gender,$address,$state,$city,$status,$source,$owner){
+	function addToDB($fname,$lname,$email,$phone,$fax,$grad_year,$gender,$address,$state,$city,$status,$source,$owner,$country,$zip,$secEmail,$leadType,$editForm){
 		require_once 'config/dbConfig.php';
 		$con = mysqli_connect(DB_HOST,DB_USER,DB_PASS);
 		if($con){
 			if(mysqli_select_db($con, DB_NAME)){
 				$name = $fname.' '.$lname;
-				$sql = "INSERT INTO contacts(name, address, city, state, phone, grad_year, fax, email, source, status, owner, gender) VALUES ('$name','$address','$city','$state','$phone','$grad_year','$fax','$email','$source','$status','$owner','$gender');";
-			mysqli_query($con,$sql);
+				if($editForm==-1){
+					$sql = "INSERT INTO contacts(name, address, city, state, phone, grad_year, fax, email, source, status, owner, gender,country,zip,sec_email,lead_type) VALUES ('$name','$address','$city','$state','$phone','$grad_year','$fax','$email','$source','$status','$owner','$gender','$country','$zip','$secEmail','$leadType');";
+				}
+				else{
+					$sql = "Update contacts set name = '$name', address='$address', city = '$city', state = '$state', phone = '$phone', grad_year = '$grad_year', fax = '$fax', email = '$email', source = '$source', status = '$status', owner = '$owner', gender= '$gender',country = '$country',zip = '$zip',sec_email = '$secEmail',lead_type = '$leadType' where id = '$editForm';";
+				}
+				if(mysqli_query($con,$sql))
+					return true;
 			}
 			else{
 				die('Cannot connect to DB');
@@ -231,7 +262,7 @@
 	}
 
 	function advanceSearch($where){
-		require_once 'config/dbConfig.php';
+		require_once $_SERVER["DOCUMENT_ROOT"].'/vincentLeads'.'/config/dbConfig.php';
 		$con = mysqli_connect(DB_HOST,DB_USER,DB_PASS);
 		if($con){
 			if(mysqli_select_db($con, DB_NAME)){

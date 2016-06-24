@@ -50,6 +50,53 @@
 		}
 	}
 
-	if(!isset($_GET["q"]))
-	getDataTable();
+	if(isset($_GET["adv_search"])){
+		isset($_GET["advFirstName"])? $fname = $_GET["advFirstName"] : $fname = null;
+		isset($_GET["advLastName"])? $lname = $_GET["advLastName"]: $lname = null;
+		$name = $fname . ' ' . $lname;
+		isset($_GET["advEmail"])? $email = $_GET["advEmail"] : $email = null;
+		isset($_GET["advPhone"])? $phone = $_GET["advPhone"] : $phone = null;
+		isset($_GET["advCity"])? $city = $_GET["advCity"] : $city = null;
+		isset($_GET["advState"])? $state = $_GET["advState"] : $state = null;
+		isset($_GET["advStage"])? $stage = $_GET["advStage"] : $stage = null;
+		isset($_GET["advOwner"])? $owner = $_GET["advOwner"] : $owner = null;
+
+		$where = null;
+
+		if($name!=null && $name != ' '){
+			$where = "name like '%".$name."%'";
+		}
+		if($email != null){
+			if($where == null) $where = "email = '".$email."'";
+			else $where .= " and email = '".$email."'";
+		}
+		if($phone != null){
+			if($where == null) $where = "phone = '".$phone."'";
+			else $where .= " and phone = '".$phone."'";
+		}
+		if($city != null){
+			if($where == null) $where = "city = '".$city."'";
+			else $where .= " and city = '".$city."'";
+		}
+		if($state != null){
+			if($where == null) $where = "state = '".$state."'";
+			else $where .= " and state = '".$state."'";
+		}
+		if($stage != null){
+			if($where == null) $where = "status = '".$stage."'";
+			else $where .= " and status = '".$stage."'";
+		}
+		if($owner != null){
+			if($where == null) $where = "owner = '".$owner."'";
+			else $where .= " and owner = '".$owner."'";
+		}
+		advanceSearch($where);
+		//require_once 'dashboard_design.php';
+		//return;
+	}
+
+	if(!isset($_GET["q"]) && !isset($_GET['adv_search'])){
+		getDataTable();
+	}
+	
 ?>

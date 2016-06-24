@@ -4,8 +4,11 @@
     <meta charset="utf-8">
     <title>PixelStages</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"> -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="styles/style.css" type="text/css">
     <link rel="stylesheet" href="styles/fonts.css" type="text/css">
     <script src="https://use.fontawesome.com/6cab19a7e8.js"></script>
@@ -24,6 +27,7 @@
 				}
 				else{
 					$(input).parent().next().html(note);
+					$(input).prop('value','');
 					$.get( "lib/php/data.php?note="+note+'&id='+id, function( data ) {
 					});
 					//window.location = "lib/php/data.php?note="+note+'&id='+id;
@@ -46,28 +50,6 @@
 		function showColorPlate(input){
 			$(input).parent().find('.xd-color-plate').slideToggle();
 		}
-		function CreateSpace(id,name){
-			var jCode = "$('#space_content').show().load('details.php?id="+id+"');$('.xd-spaces-container').find('.xd-space-active').removeClass('xd-space-active').addClass('xd-space-inactive'); $(this).toggleClass('xd-space-inactive').toggleClass('xd-space-active');";
-			
-			var onclickcode ="onClick = " + "\""+jCode+"\"";
-
-			$('.xd-space-active').removeClass('xd-space-active').addClass('xd-space-inactive');
-			$( "<div "+onclickcode+" class='xd-space-active'><i class='fa fa-times' onclick='closeSpace(this);'></i>"+name+"</div>").insertBefore( ".xd-add-space" );
-			$('#space_content').show().load('details.php?id='+id);
-		}
-
-		function closeSpace(input){
-			$("#space_content").fadeOut();
-			$(input).parent().hide();
-		}
-
-		function editRow(input){
-			var isDisabled = $('.xd-edit-row').find('.xd-table-edit-inputs').prop('disabled');
-			$('.xd-edit-row').find('.xd-table-edit-inputs').prop('disabled',!isDisabled);
-			$('.xd-edit-row').find('.xd-table-edit-inputs').toggleClass('xd-editable');
-			$('.xd-edit-row').find('.xd-edit-btn-save').toggle();
-		}
-
 		function saveEdit(input){
 			var name = $('.xd-edit-row').find('#editName').prop('value');
 			var email =$('.xd-edit-row').find('#editEmail').prop('value');	
@@ -104,7 +86,12 @@
 
 			window.location = 'dashboard.php'+string;
 		}
-
+		function checkNum(e){
+			if(e.charCode >= 48 && e.charCode <= 57)
+				return true;
+			else
+				return false;
+		}
     </script>
 </head>
 <body>
@@ -157,7 +144,7 @@
 				</div>
 				<div class="xd-advance-search-hover-card">
 					<img src="Assets/hover-triangle.png" class="xd-advance-hover-triangle">
-					<form action="" method="post" onsubmit="return validate('advSearch');">
+					<form action="lib/php/data.php" id="advSearchForm" method="get">
 						<div class="xd-advance-search-container">
 							<div class="xd-advance-left-inputs">
 								<input type="text" class="xd-advance-input" onfocus="this.placeholder='';" onblur="this.placeholder='First Name';" name="advFirstName" id="advFirstName" placeholder="First Name">
@@ -165,7 +152,7 @@
 								<input type="text" onfocus="this.placeholder='';" onblur="this.placeholder='City';" class="xd-advance-input" name="advCity" id="advCity" placeholder="City">
 								<div class="xd-advance-input xd-advance-input-select">
 									<select name="advStage" placeholder="Stage" id="advStage">
-										<option>Stage 1</option>
+										<option>Status</option>
 										<option>Stage 2</option>
 										<option>Stage 3</option>
 									</select>									
@@ -176,17 +163,17 @@
 							</div>
 							<div class="xd-advance-right-inputs">
 								<input type="text" class="xd-advance-input" onfocus="this.placeholder='';" onblur="this.placeholder='Last Name';" name="advLastName" id="advLastName" placeholder="Last Name">
-								<input type="tel" pattern="^\d{10,14}$" title="XXXXXXXXXX" maxlength="14" onfocus="this.placeholder='';" onblur="this.placeholder='Phone';" class="xd-advance-input" name="advPhone" placeholder="Phone">
+								<input type="tel" pattern="^\d{10,14}$" title="XXXXXXXXXX" maxlength="14" onfocus="this.placeholder='';" onblur="this.placeholder='Phone';" class="xd-advance-input" name="advPhone" id="advPhone" placeholder="Phone">
 								<input type="text" onfocus="this.placeholder='';" onblur="this.placeholder='State';" class="xd-advance-input" name="advState" id="advState" placeholder="State">
 								<div class="xd-advance-input xd-advance-input-select">
 									<select name="advOwner" placeholder="Owner" id="advOwner">
-										<option>Owner 1</option>
+										<option>Owner</option>
 										<option>Owner 2</option>
 										<option>Owner 3</option>
 									</select>
 								</div>
 								<div class="xd-adv-seperator"></div>
-								<input type="submit" value="More" class="xd-advance-search-btn xd-adv-btn-right">
+								<input type="reset" value="Clear" class="xd-advance-search-btn xd-adv-btn-right">
 							</div>
 
 						</div>
@@ -201,7 +188,7 @@
 		<div class="row xd-spaces-row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="xd-spaces-container">
-					<div id="homeSpace" onclick="$('#space_content').hide();$('.xd-spaces-container').find('.xd-space-active').removeClass('xd-space-active').addClass('xd-space-inactive'); $(this).toggleClass('xd-space-inactive').toggleClass('xd-space-active');" class="xd-space-active">
+					<div id="homeSpace" class="xd-space-active xd-space">
 						Home
 					</div>
 					<div class="xd-add-space">

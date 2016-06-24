@@ -13,59 +13,12 @@
 			editRow($name,$email,$phone,$addr,$status,$type);
 			header('Location: dashboard.php');
 	}
+	
 
 	if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 		if(isset($_POST["addFirstName"])){
 			require_once('dashboard_design.php');
-			return;
-		}
-
-		if(isset($_POST["adv_search"])){
-			
-			isset($_POST["advFirstName"])? $fname = $_POST["advFirstName"] : $fname = null;
-			isset($_POST["advLastName"])? $lname = $_POST["advLastName"]: $lname = null;
-			$name = $fname . ' ' . $lname;
-			isset($_POST["advEmail"])? $email = $_POST["advEmail"] : $email = null;
-			isset($_POST["advPhone"])? $phone = $_POST["advPhone"] : $phone = null;
-			isset($_POST["advCity"])? $city = $_POST["advCity"] : $city = null;
-			isset($_POST["advState"])? $state = $_POST["advState"] : $state = null;
-			isset($_POST["advStage"])? $stage = $_POST["advStage"] : $stage = null;
-			isset($_POST["advOwner"])? $owner = $_POST["advOwner"] : $owner = null;
-
-			$where = null;
-
-			if($name!=null && $name != ' '){
-				$where = "name like '%".$name."%'";
-			}
-			if($email != null){
-				if($where == null) $where = "email = '".$email."'";
-				else $where .= " and email = '".$email."'";
-			}
-			if($phone != null){
-				if($where == null) $where = "phone = '".$phone."'";
-				else $where .= " and phone = '".$phone."'";
-			}
-			if($city != null){
-				if($where == null) $where = "city = '".$city."'";
-				else $where .= " and city = '".$city."'";
-			}
-			if($state != null){
-				if($where == null) $where = "state = '".$state."'";
-				else $where .= " and state = '".$state."'";
-			}
-			if($stage != null){
-				if($where == null) $where = "status = '".$stage."'";
-				else $where .= " and status = '".$stage."'";
-			}
-			if($owner != null){
-				if($where == null) $where = "owner = '".$owner."'";
-				else $where .= " and owner = '".$owner."'";
-			}
-
-			require_once 'lib/php/functions.php';
-			advanceSearch($where);
-			require_once 'dashboard_design.php';
 			return;
 		}
 

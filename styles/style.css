@@ -21,10 +21,12 @@ body
 
 .xd-logorow{
 	padding-top:3%;
+	cursor: pointer;
 }
 .xd-logostages{
 	color:#5fcf80 !important;
 	font-family: 'Gotham-Bold';
+	cursor: pointer;
 }
 .xd-logo{
 	font-size: 70px;
@@ -518,7 +520,7 @@ background-image: linear-gradient(to bottom, #59C97D 0%, #25B35E 100%);
 }
 
 /* Dashboard - Filters Row */
-.xd-filters-row{
+.xd-filters-row, .xd-status-row{
 	margin-top: 25px;
 	background-color: #FAFAFA;
 	height: 50px;
@@ -642,14 +644,17 @@ background-image: linear-gradient(to bottom, #59C97D 0%, #25B35E 100%);
 	margin-top: 15px;
 }
 .xd-color-plate{
-	width: 40px !important;
+	width: 60px !important;
 	height: 120px;
 	position: absolute;
 	top:-120px;
+	left:-20px;
 	display: none;
 }
 .xd-color-plate div{
 	margin-top: 9px;
+	margin-right: 20px;
+	margin-left: 20px;
 }
 .xd-color-options{
 	float: left;
@@ -708,7 +713,7 @@ background-image: linear-gradient(to bottom, #59C97D 0%, #25B35E 100%);
 .xd-details-hover-card{
 	display:none;
 	width: 340px;
-	min-height: 450px;
+	min-height: 500px;
 	background-color: #fff;
 	border-radius: 5px;
 	border:1px solid #DFDFDF;
@@ -760,7 +765,7 @@ background-image: linear-gradient(to bottom, #59C97D 0%, #25B35E 100%);
 }
 .xd-details-hover-body{
 	width:100%;
-	height: 330px;
+	height:380px;
 }
 .xd-details-hover-left{
 	width:40%;
@@ -869,9 +874,10 @@ background-image: linear-gradient(to bottom, #59C97D 0%, #25B35E 100%);
 }
 .xd-add-hover-card{
 	width:572px;
-	height: 415px;
+	height: 520px;
 	background: #5fcf80;
 	position: fixed;
+	z-index: 3;
 	bottom:95px;
 	margin-left: calc(82% - 505px);
 	margin-top: calc(18% - 430px);
@@ -886,7 +892,7 @@ background-image: linear-gradient(to bottom, #59C97D 0%, #25B35E 100%);
 	content: "";
   display: block;
   position: absolute;
-  top:414px;
+  top:519px;
   left: 535px;
   width: 0;
   border-width: 8px 8px 0px;
@@ -953,11 +959,15 @@ background-image: linear-gradient(to bottom, #59C97D 0%, #25B35E 100%);
 	padding-top:20px;
 	min-height: 70px !important;
 }
+.xd-add-hover-sec3 input[id="addAddress"]{
+	width: 315px !important;
+}
 .xd-add-hover-sec4{
 	margin-top:28px !important;
 	padding:0px !important;
 	min-height: 50px !important;
 }
+
 .xd-add-hover-sec4 input[name='addAttachment']{
 	width: 315px !important;
 	background:url('../Assets/upload.png') 96%;
@@ -973,9 +983,31 @@ background-image: linear-gradient(to bottom, #59C97D 0%, #25B35E 100%);
 	text-align: left;
 	padding-left: 20px;
 }
+.xd-add-hover-sec4 input[type="file"]{
+	opacity: 0;
+	position: absolute;
+	overflow: hidden;
+	z-index: 1;
+	width: 20px;
+	margin-top: -35px;
+	margin-left: 20px;
+	width: 150px;
+	cursor: pointer;
+}
+.xd-add-hover-sec4 input[id="addAttachmentFile"]{
+	margin-left: 180px;
+	width: 315px;
+}
 .xd-add-hover-sec5{
 	padding:0px !important;
 	min-height: 50px !important;
+}
+.xd-add-hover-sec6{
+	margin-top: 0 !important;
+}
+.xd-add-hover-sec6 input[id="addSecEmail"]{
+	width: 315px;
+	margin-bottom: 1.5em;
 }
 .xd-add-hover-select{
 	float: left;

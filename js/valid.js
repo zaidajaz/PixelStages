@@ -50,31 +50,31 @@ function validate(validationType){
 			}
 			if(phone!=''){
 				if (!phone.match(/^([0-9]{3,30}$)/i)) {
-					$('#xd-info').html('Invalid characters in Email').fadeIn(1000);
+					$('#xd-info').html('Invalid characters in Phone').fadeIn(1000);
 					return false;
 				}
 			}
 			if(city!=''){
 				if (!city.match(/^([A-Z0-9 a-z.]{3,30}$)/i)) {
-					alert('Invalid characters in First Name');
+					alert('Invalid characters in City');
 					return false;
 				}
 			}
 			if(state!=''){
 				if (!state.match(/^([A-Z0-9 a-z.]{3,30}$)/i)) {
-					alert('Invalid characters in First Name');
+					alert('Invalid characters in State');
 					return false;
 				}
 			}
 			if(stage!=''){
 				if (!stage.match(/^([A-Z0-9 a-z.]{3,30}$)/i)) {
-					alert('Invalid characters in First Name');
+					alert('Invalid characters in Stage');
 					return false;
 				}
 			}
 			if(owner!=''){
 				if (!owner.match(/^([A-Z0-9 a-z.]{3,30}$)/i)) {
-					alert('Invalid characters in First Name');
+					alert('Invalid characters in Owner');
 					return false;
 				}
 			}
@@ -93,7 +93,13 @@ function validate(validationType){
 			var status = $('#addStatus').prop('value');
 			var owner = $('#addOwner').prop('value');
 			var source = $('#addSource').prop('value');
-			alert(fname + lname + email + phone + fax + grad_year + addr + city + state + owner + source);
+			var country = $('#addCountry').prop('value');
+			var zip = $('#addZip').prop('value');
+			var secEmail = $('#addSecEmail').prop('value');
+			var leadType = $('#addLeadType').prop('value');
+
+			//alert(fname + lname + email + phone + fax + grad_year + addr + city + state + owner + source);
+
 			if(fname != ''){
 				if (!fname.match(/^([A-Z0-9 a-z.]{3,30}$)/i)) {
 					alert('Invalid characters in First Name');
@@ -109,6 +115,12 @@ function validate(validationType){
 			if(email!=''){
 				if (!email.match(/^([A-Z0-9 a-z@._-]{3,30}$)/i)) {
 					alert('Invalid characters in Email');
+					return false;
+				}
+			}
+			if(secEmail!=''){
+				if (!secEmail.match(/^([A-Z0-9 a-z@._-]{3,30}$)/i)) {
+					alert('Invalid characters in Secondary Email');
 					return false;
 				}
 			}
@@ -138,31 +150,50 @@ function validate(validationType){
 			}
 			if(city!=''){
 				if (!city.match(/^([A-Z0-9 a-z.]{3,30}$)/i)) {
-					alert('Invalid characters in First Name');
+					alert('Invalid characters in City');
 					return false;
 				}
 			}
+			if(country!=''){
+				if (!country.match(/^([A-Z0-9 a-z.]{3,30}$)/i)) {
+					alert('Invalid characters in Country');
+					return false;
+				}
+			}
+
 			if(state!=''){
 				if (!state.match(/^([A-Z0-9 a-z.]{3,30}$)/i)) {
-					alert('Invalid characters in First Name');
+					alert('Invalid characters in State');
+					return false;
+				}
+			}
+			if(zip!=''){
+				if (!zip.match(/^([0-9]{6,6}$)/i)) {
+					alert('Invalid characters in Zip');
+					return false;
+				}
+			}
+			if(leadType!=''){
+				if (!leadType.match(/^([A-Z0-9 a-z.]{3,30}$)/i)) {
+					alert('Invalid characters in Lead Type');
 					return false;
 				}
 			}
 			if(status!=''){
-				if (!stage.match(/^([A-Z0-9 a-z.]{3,30}$)/i)) {
-					alert('Invalid characters in First Name');
+				if (!status.match(/^([A-Z0-9 a-z.]{3,30}$)/i)) {
+					alert('Invalid characters in Status');
 					return false;
 				}
 			}
 			if(source!=''){
-				if (!stage.match(/^([A-Z0-9 a-z.]{3,30}$)/i)) {
-					alert('Invalid characters in First Name');
+				if (!source.match(/^([A-Z0-9 a-z.]{3,30}$)/i)) {
+					alert('Invalid characters in Source');
 					return false;
 				}
 			}
 			if(owner!=''){
 				if (!owner.match(/^([A-Z0-9 a-z.]{3,30}$)/i)) {
-					alert('Invalid characters in First Name');
+					alert('Invalid characters in Owner');
 					return false;
 				}
 			}
